@@ -8,48 +8,37 @@
     <nav class="sidebar-nav">
       <ul id="sidebarnav">
 
-        <!-- Company module-->
-        <li class="nav-small-cap"
-            *ngIf="menu.company"
-        >
-          {{menu.company.module}}
-        </li>
-        <li *ngFor="let item of menu.company.items ">
-          <a class="has-arrow waves-effect waves-dark"
-             href="#" aria-expanded="false">
-            <i [class]="item.icon"></i><span class="hide-menu">{{item.title}} <span class="label label-rouded label-themecolor pull-right">{{item.submenu.length}}</span></span>
-          </a>
-          <ul aria-expanded="false" class="collapse">
+        <ng-container *ngIf="menu.company">
+          <li *ngFor="let item of menu.company.items ">
+            <a class="has-arrow waves-effect waves-dark"
+               href="#" aria-expanded="false">
+              <i [class]="item.icon"></i><span class="hide-menu">{{item.title}} <span class="label label-rouded label-themecolor pull-right">{{item.submenu.length}}</span></span>
+            </a>
+            <ul aria-expanded="false" class="collapse">
 
-            <li *ngFor="let submenu of item.submenu">
-              <a [routerLink]="submenu.url" routerLinkActive="active">
-                {{submenu.title}}
-              </a>
-            </li>
+              <li *ngFor="let submenu of item.submenu">
+                <a [routerLink]="submenu.url" routerLinkActive="active">
+                  {{submenu.title}}
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ng-container>
 
-          </ul>
-        </li>
+        <ng-container *ngIf="menu.users">
+          <li *ngFor="let item of menu.users.items ">
+            <a class="has-arrow waves-effect waves-dark"
+               href="#" aria-expanded="false">
+              <i [class]="item.icon"></i><span class="hide-menu">{{item.title}} <span class="label label-rouded label-themecolor pull-right">{{item.submenu.length}}</span></span>
+            </a>
+            <ul aria-expanded="false" class="collapse">
 
-        <!-- Users module-->
-        <li class="nav-devider"></li>
-        <li class="nav-small-cap"
-            *ngIf="menu.users"
-        >
-          {{menu.users.module}}
-        </li>
-        <li *ngFor="let item of menu.users.items ">
-          <a class="has-arrow waves-effect waves-dark"
-             href="#" aria-expanded="false">
-            <i [class]="item.icon"></i><span class="hide-menu">{{item.title}} <span class="label label-rouded label-themecolor pull-right">{{item.submenu.length}}</span></span>
-          </a>
-          <ul aria-expanded="false" class="collapse">
-
-            <li *ngFor="let submenu of item.submenu">
-              <a [routerLink]="submenu.url" routerLinkActive="active">{{submenu.title}}</a>
-            </li>
-
-          </ul>
-        </li>
+              <li *ngFor="let submenu of item.submenu">
+                <a [routerLink]="submenu.url" routerLinkActive="active">{{submenu.title}}</a>
+              </li>
+            </ul>
+          </li>
+        </ng-container>
 
       </ul>
     </nav>
