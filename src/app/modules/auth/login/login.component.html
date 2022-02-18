@@ -13,7 +13,9 @@
           (ngSubmit)="login()"
         >
           <h3 class="box-title m-b-20">Sign In</h3>
-          <div class="form-group ">
+          <div class="form-group"
+               [class.has-danger]="invalidEmailResponse"
+          >
             <div class="col-xs-12">
               <input
                 class="form-control"
@@ -21,9 +23,14 @@
                 placeholder="email"
                 formControlName="email"
               >
+              <div class="form-control-feedback"
+                   *ngIf="invalidEmailResponse"
+              >Email inválido</div>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group"
+               [class.has-danger]="invalidPasswordResponse"
+          >
             <div class="col-xs-12">
               <input
                 class="form-control"
@@ -31,6 +38,9 @@
                 placeholder="password"
                 formControlName="password"
               >
+              <div class="form-control-feedback"
+                   *ngIf="invalidPasswordResponse"
+              >Password inválido</div>
             </div>
           </div>
           <div class="form-group row">
