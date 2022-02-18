@@ -5,27 +5,54 @@
   <div class="login-register" style="background-image:url(/assets/images/background/login-register.jpg);">
     <div class="login-box card">
       <div class="card-body">
-        <form class="form-horizontal form-material" id="loginform" action="index.html">
+        <form
+          id="loginform"
+          class="form-horizontal form-material"
+          autocomplete="off"
+          [formGroup]="loginForm"
+          (ngSubmit)="login()"
+        >
           <h3 class="box-title m-b-20">Sign In</h3>
           <div class="form-group ">
             <div class="col-xs-12">
-              <input class="form-control" type="text" required="" placeholder="Username"> </div>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="email"
+                formControlName="email"
+              >
+            </div>
           </div>
           <div class="form-group">
             <div class="col-xs-12">
-              <input class="form-control" type="password" required="" placeholder="Password"> </div>
+              <input
+                class="form-control"
+                type="password"
+                placeholder="password"
+                formControlName="password"
+              >
+            </div>
           </div>
           <div class="form-group row">
             <div class="col-md-12">
               <div class="checkbox checkbox-info pull-left p-t-0">
-                <input id="checkbox-signup" type="checkbox" class="filled-in chk-col-light-blue">
+                <input
+                  id="checkbox-signup"
+                  type="checkbox"
+                  class="filled-in chk-col-light-blue"
+                  formControlName="remember"
+                >
                 <label for="checkbox-signup"> Remember me </label>
               </div>
             </div>
           </div>
           <div class="form-group text-center">
             <div class="col-xs-12 p-b-20">
-              <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit">Log In</button>
+              <button
+                class="btn btn-block btn-lg btn-info btn-rounded"
+                type="submit"
+                [disabled]="loginForm.invalid"
+              >Log In</button>
             </div>
           </div>
         </form>
