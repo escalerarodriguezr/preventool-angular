@@ -29,7 +29,7 @@ export class SidebarService {
           icon: 'mdi mdi-folder-lock-open',
           submenu: [
             {title: 'Listado de usuarios', url: '/admin/user/users'},
-            {title: 'Crear usuario', url: 'admin/user/create'},
+            {title: 'Crear usuario', url: '/admin/user/create'},
           ]
         }
       ]
