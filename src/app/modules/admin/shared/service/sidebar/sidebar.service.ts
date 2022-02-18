@@ -28,11 +28,8 @@ export class SidebarService {
           title: 'Usuarios',
           icon: 'mdi mdi-folder-lock-open',
           submenu: [
-            {title: 'Dashboard', url: '/'},
-            {title: 'Progress', url: 'progress'},
-            {title: 'Gráfica1', url: 'grafica1'},
-            {title: 'Promesas', url: 'promesas'},
-            {title: 'Rxjs', url: 'rxjs'},
+            {title: 'Listado de usuarios', url: '/admin/user/users'},
+            {title: 'Crear usuario', url: 'admin/user/create'},
           ]
         }
       ]
