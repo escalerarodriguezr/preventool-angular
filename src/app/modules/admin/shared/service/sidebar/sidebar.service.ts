@@ -15,7 +15,7 @@ export class SidebarService {
           title: 'Compañia',
           icon: 'mdi mdi-gauge',
           submenu: [
-            {title: 'Datos generales', url: '/'},
+            {title: 'Datos generales', url: '/admin/company/update'},
             {title: 'Progress', url: 'progress'},
           ]
         }

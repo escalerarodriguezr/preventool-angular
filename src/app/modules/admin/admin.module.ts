@@ -5,6 +5,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { HeaderComponent } from './shared/component/header/header.component';
 import { SidebarComponent } from './shared/component/sidebar/sidebar.component';
+import {CompanyModule} from "./company/company.module";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SidebarComponent } from './shared/component/sidebar/sidebar.component';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    CompanyModule
   ]
 })
 export class AdminModule { }

@@ -6,7 +6,9 @@ const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
+    loadChildren: () => import('./child-routes.module').then( m => m.ChildRoutesModule )
   },
+
   {
     path: '**',
     redirectTo: ''
