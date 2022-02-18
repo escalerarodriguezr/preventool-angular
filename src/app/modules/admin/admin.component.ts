@@ -11,6 +11,8 @@ declare function customInitFunctions();
 })
 export class AdminComponent implements OnInit {
 
+  public currentYear: number = new Date().getFullYear();
+
   constructor() { }
 
   ngOnInit(): void {
