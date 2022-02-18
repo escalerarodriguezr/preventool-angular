@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LoginService} from "../service/login/login.service";
 import {loginResponseInterface} from "../service/login/interface/login-response.interface";
 import {HttpErrorResponse} from "@angular/common/http";
+import Swal from "sweetalert2";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -11,13 +13,14 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class LoginComponent implements OnInit {
 
-  public loginForm: FormGroup;
+  public loginForm:FormGroup;
   public invalidEmailResponse:boolean = false;
   public invalidPasswordResponse:boolean = false;
 
   constructor(
-    private fb: FormBuilder,
-    private loginService: LoginService
+    private fb:FormBuilder,
+    private router:Router,
+    private loginService:LoginService
   )
   {
     this.loginForm = this.fb.group({
@@ -42,6 +45,7 @@ export class LoginComponent implements OnInit {
         next: (response:loginResponseInterface) =>{
           localStorage.setItem('token', response.token );
           remember ? localStorage.setItem('remember', email) : localStorage.removeItem('remember');
+          this.router.navigateByUrl('/admin/dashboard')
         },
         error: (error:HttpErrorResponse) => {
           if( error.status == 404 ){
@@ -50,12 +54,11 @@ export class LoginComponent implements OnInit {
           if( error.status == 401 ){
             this.invalidPasswordResponse = true;
           }
-          
+          if( error.status == 500 ){
+            Swal.fire('Error', 'Se ha producido un error inesperado', 'error' );
+          }
         }
       })
-
-
-
 
   }
 

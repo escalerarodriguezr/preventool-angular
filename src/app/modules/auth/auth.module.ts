@@ -5,6 +5,8 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import {HttpClientModule} from "@angular/common/http";
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule,
+    SweetAlert2Module
   ]
 })
 export class AuthModule { }
