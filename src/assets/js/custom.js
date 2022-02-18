@@ -6,9 +6,9 @@ File: js
 */
 
 //NOTA:
-//Este codigo se carga para inicalizar el template cuando carga la pagina
+//Este codigo se carga para inicializar el template cuando carga la pagina
 //Como con Angulat solo se carga una vez, cuando navego entre algunas rutas no se lanza esto
-//Para arreglarlo, lo encapsulo en customInitFinctions y es a esta funcion a la que llamo cuando la necesite
+//Para arreglarlo, lo encapsulo en customInitFunctions y es a esta funcion a la que llamo cuando la necesite
 //La llamare en el ngOnInit del pages.component.ts
 
 const customInitFunctions = () => {
