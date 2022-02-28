@@ -45,7 +45,8 @@ export class LoginComponent implements OnInit {
         next: (response:loginResponseInterface) =>{
           localStorage.setItem('token', response.token );
           remember ? localStorage.setItem('remember', email) : localStorage.removeItem('remember');
-          this.router.navigateByUrl('/admin/dashboard')
+          console.log(response.token);
+          this.router.navigateByUrl('/admin/dashboard');
         },
         error: (error:HttpErrorResponse) => {
           if( error.status == 404 ){

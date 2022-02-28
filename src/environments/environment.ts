@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  auth_url: 'http://localhost:250/api/login_check'
+  auth_url: 'http://localhost:250/api/login_check',
+  api_url: 'http://localhost:250/api/v1/'
 };
 
 /*
