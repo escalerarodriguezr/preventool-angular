@@ -4,6 +4,7 @@ import {catchError, map, Observable, of} from "rxjs";
 import {environment} from "../../../../../../environments/environment";
 import {SessionInterface} from "./session.interface";
 import {AuthUser} from "../../../../../model/user/authUser.model";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class SessionService {
   public authUser:AuthUser|null;
 
   constructor(
-    private http:HttpClient
+    private http:HttpClient,
+    private router:Router
 
   )
   {
@@ -53,6 +55,12 @@ export class SessionService {
           return of(false);
         } )
     );
+  }
 
+  public logOut():void
+  {
+    localStorage.removeItem('token');
+    this.authUser = null;
+    this.router.navigateByUrl('auth');
   }
 }
