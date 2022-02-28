@@ -8,13 +8,15 @@ import { SidebarComponent } from './shared/component/sidebar/sidebar.component';
 import {CompanyModule} from "./company/company.module";
 import {UserModule} from "./user/user.module";
 import {DashboardModule} from "./dashboard/dashboard.module";
+import {BreadcrumbComponent} from "./shared/component/breadcrumb/breadcrumb.component";
 
 
 @NgModule({
   declarations: [
     AdminComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
