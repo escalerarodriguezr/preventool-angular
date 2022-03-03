@@ -1,5 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControlStatus, FormGroup, Validators} from "@angular/forms";
+import {
+  AbstractControlOptions,
+  FormBuilder,
+  FormControlStatus,
+  FormGroup,
+  ValidationErrors, ValidatorFn,
+  Validators
+} from "@angular/forms";
+import {CreateUserService} from "../../service/create-user/create-user.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-create-user',
@@ -19,9 +29,12 @@ export class CreateUserComponent implements OnInit {
   public confirmPasswordRequired:boolean = false;
 
   constructor(
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private createUserService:CreateUserService
   )
   {
+
+    const formOptions: AbstractControlOptions = { validators: this.confirmPassword('password', 'confirmPassword') };
     this.createUserForm = this.fb.group({
       name:['',Validators.required],
       surname:['',Validators.required],
@@ -29,9 +42,7 @@ export class CreateUserComponent implements OnInit {
       role:['ROLE_ADMIN',Validators.required],
       password:['',Validators.required],
       confirmPassword:['']
-    },{
-      validators: this.confirmPassword('password', 'confirmPassword')
-    });
+    },formOptions);
 
   }
 
@@ -75,7 +86,7 @@ export class CreateUserComponent implements OnInit {
     return this.createUserForm.valid;
   }
 
-  confirmPassword(pass1: string, pass2: string ) {
+  confirmPassword(pass1: string, pass2: string ):any {
 
     return ( formGroup: FormGroup ) => {
 
@@ -94,7 +105,28 @@ export class CreateUserComponent implements OnInit {
   public submit()
   {
     if(!this.createUserForm.invalid){
-      console.log("hacer el post");
+      this.createUserService.invoke(this.createUserForm.value).subscribe({
+        next:response=>{
+          Swal.fire(
+            'Usuario creado',
+            `${ this.createUserForm.get('email')?.value } fue creado correctamente`,
+            'success'
+          );
+        },
+        error: (error:HttpErrorResponse) => {
+          if( error.status == 400 ){
+            if((error.error.class).includes('BadRequestHttpException')){
+              Swal.fire('Error', 'Campos inválidos: '+error.error.message, 'error' );
+            }
+          }else if( error.status == 409 ){
+            if((error.error.class).includes('UserAlreadyExistsException')){
+              Swal.fire('Error', 'Ya existe un usuario registrado con el email: ' + this.createUserForm.get('email')?.value  );
+            }
+          }else{
+            Swal.fire('Error', 'Se ha producido un error inesperado', 'error' );
+          }
+        }
+      });
     }
   }
 

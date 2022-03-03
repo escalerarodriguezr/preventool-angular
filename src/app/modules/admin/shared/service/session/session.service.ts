@@ -16,7 +16,6 @@ export class SessionService {
   constructor(
     private http:HttpClient,
     private router:Router
-
   )
   {
     this.authUser = null;
