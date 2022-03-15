@@ -25,6 +25,7 @@ export class CreateUserComponent implements OnInit {
   public emailRequiredError:boolean = false;
   public emailEmailError:boolean = false;
   public passwordRequiredError:boolean = false;
+  public passwordMinError:boolean = false;
   public confirmPasswordError:boolean = false;
   public confirmPasswordRequired:boolean = false;
 
@@ -40,7 +41,7 @@ export class CreateUserComponent implements OnInit {
       surname:['',Validators.required],
       email:['',[Validators.required,Validators.email]],
       role:['ROLE_ADMIN',Validators.required],
-      password:['',Validators.required],
+      password:['',[Validators.required,Validators.minLength(6)]],
       confirmPassword:['']
     },formOptions);
 
@@ -66,7 +67,9 @@ export class CreateUserComponent implements OnInit {
     });
     this.createUserForm.get('password')?.statusChanges.subscribe({
       next:(status:FormControlStatus)=>{
-        this.passwordRequiredError = status == 'INVALID' ? true : false;
+        console.log(this.createUserForm.get('password')?.errors)
+        this.passwordRequiredError = this.createUserForm.get('password')?.hasError('required') ? true : false;
+        this.passwordMinError = this.createUserForm.get('password')?.hasError('minlength') ? true : false;
 
       }
     });
