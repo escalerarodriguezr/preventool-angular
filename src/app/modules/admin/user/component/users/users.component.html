@@ -32,27 +32,30 @@
                 *ngIf="showPagination()"
             >
               <li class="page-item animated fadeIn">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                  <span class="sr-only">Previous</span>
+                <a class="page-link cursor-pointer" aria-label="Previous"
+                   (click)="changePage(1)"
+                >
+                  <span aria-hidden="true">Primera</span>
+
                 </a>
               </li>
 
-              <li *ngFor="let page of [].constructor(pages);let indexOfelement=index" class="page-item animated fadeIn"
-                  [class.active]="(indexOfelement+1) == currentPage"
+              <li *ngFor="let page of getPagesCollection()" class="page-item animated fadeIn"
+                  [class.active]="page == currentPage"
               >
                 <a class="page-link cursor-pointer"
-                   (click)="changePage((indexOfelement+1))"
+                   (click)="changePage(page)"
                 >
-                  {{indexOfelement+1}}</a>
+                  {{page}}</a>
               </li>
 
               <li class="page-item animated fadeIn"
-                  *ngIf="showNextIcon()"
+                  *ngIf="showLastPageButton()"
               >
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                  <span class="sr-only">Next</span>
+                <a class="page-link cursor-pointer" aria-label="Next"
+                   (click)="changePage(pages)"
+                >
+                  <span aria-hidden="true">Última</span>
                 </a>
               </li>
             </ul>

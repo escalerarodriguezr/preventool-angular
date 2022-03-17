@@ -16,6 +16,7 @@ export class UsersComponent implements OnInit {
   public pages:number = 0;
   public currentPage:number = 0;
 
+
   private queryParams:HttpParams = new HttpParams();
 
   constructor(
@@ -44,7 +45,6 @@ export class UsersComponent implements OnInit {
         this.usersToModel(response.users);
       }
     });
-
   }
 
   private usersToModel(users:UserInterface[]):void
@@ -62,7 +62,19 @@ export class UsersComponent implements OnInit {
     })
   }
 
-  public showNextIcon():boolean{
+  public getPagesCollection():number[]
+  {
+    let pagesCollection:any[] = [];
+    for(let j=-2;j<=2;j++){
+      let i = this.currentPage+j;
+      if(i>=1 && i<=this.pages){
+        pagesCollection.push(i);
+      }
+    }
+    return pagesCollection;
+  }
+
+  public showLastPageButton():boolean{
     if(this.currentPage<this.pages){
       return true;
     }
