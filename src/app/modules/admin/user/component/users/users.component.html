@@ -6,9 +6,13 @@
           <table class="table table-striped">
             <thead>
             <tr>
-              <th>Email</th>
-              <th>Nombre</th>
-              <th>Rol</th>
+              <th>
+                <span class="cursor-pointer" (click)="orderByEmail()">Email</span>
+              </th>
+              <th>
+                <span class="cursor-pointer" (click)="orderByName()">Nombre</span>
+              </th>
+              <th> <span class="cursor-pointer" (click)="orderByRole()">Rol</span></th>
               <th class="text-nowrap">Action</th>
             </tr>
             </thead>

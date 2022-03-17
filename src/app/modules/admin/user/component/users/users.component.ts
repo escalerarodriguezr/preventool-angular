@@ -16,6 +16,9 @@ export class UsersComponent implements OnInit {
   public pages:number = 0;
   public currentPage:number = 0;
 
+  private orderByEmailDirection:string = 'DESC';
+  private orderByNameDirection:string = 'DESC';
+  private orderByRoleDirection:string = 'DESC';
 
   private queryParams:HttpParams = new HttpParams();
 
@@ -33,6 +36,7 @@ export class UsersComponent implements OnInit {
   {
     this.queryParams = this.queryParams.append('pageSize',3);
     this.queryParams = this.queryParams.append('currentPage',1);
+    this.orderByRole();
   }
 
   private getUsers():void
@@ -91,6 +95,30 @@ export class UsersComponent implements OnInit {
   public changePage(selectedPage:number):void
   {
     this.queryParams = this.queryParams.append('currentPage',selectedPage);
+    this.getUsers();
+  }
+
+  public orderByEmail():void
+  {
+    this.orderByEmailDirection = (this.orderByEmailDirection == 'DESC') ? 'ASC' : 'DESC';
+    this.queryParams = this.queryParams.append('orderBy','email');
+    this.queryParams = this.queryParams.append('orderDirection',this.orderByEmailDirection);
+    this.getUsers();
+  }
+
+  public orderByName():void
+  {
+    this.orderByNameDirection = (this.orderByNameDirection == 'DESC') ? 'ASC' : 'DESC';
+    this.queryParams = this.queryParams.append('orderBy','name');
+    this.queryParams = this.queryParams.append('orderDirection',this.orderByNameDirection);
+    this.getUsers();
+  }
+
+  public orderByRole():void
+  {
+    this.orderByRoleDirection = (this.orderByRoleDirection == 'DESC') ? 'ASC' : 'DESC';
+    this.queryParams = this.queryParams.append('orderBy','role');
+    this.queryParams = this.queryParams.append('orderDirection',this.orderByRoleDirection);
     this.getUsers();
   }
 
