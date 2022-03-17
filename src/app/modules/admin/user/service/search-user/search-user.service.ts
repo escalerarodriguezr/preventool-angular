@@ -3,7 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {HttpBaseService} from "../../../shared/service/http-base/http-base.service";
 import {environment} from "../../../../../../environments/environment";
-import {Observable} from "rxjs";
+import {delay, Observable} from "rxjs";
 import {SearchUserInterface} from "./search-user.interface";
 
 @Injectable({

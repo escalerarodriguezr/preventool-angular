@@ -3,6 +3,7 @@ import {SearchUserService} from "../../service/search-user/search-user.service";
 import {User} from "../../../../../model/user/user.model";
 import {SearchUserInterface, UserInterface} from "../../service/search-user/search-user.interface";
 import {HttpParams} from "@angular/common/http";
+import {HttpBaseService} from "../../../shared/service/http-base/http-base.service";
 
 @Component({
   selector: 'app-users',
@@ -23,6 +24,7 @@ export class UsersComponent implements OnInit {
   private queryParams:HttpParams = new HttpParams();
 
   constructor(
+    private httBaseService:HttpBaseService,
     private searchUserService:SearchUserService
   ) { }
 
@@ -41,12 +43,14 @@ export class UsersComponent implements OnInit {
 
   private getUsers():void
   {
+    this.httBaseService.screenLock();
     this.searchUserService.invoke(this.queryParams).subscribe({
       next:(response:SearchUserInterface)=>{
         this.total = response.total;
         this.pages = response.pages;
         this.currentPage = response.currentPage;
         this.usersToModel(response.users);
+        this.httBaseService.screenUnLock();
       }
     });
   }
