@@ -13,7 +13,7 @@
             </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let userModel of users">
+              <tr *ngFor="let userModel of users" class="animated fadeIn">
                 <td>{{userModel.email}} {{userModel.surname}}</td>
                 <td>{{userModel.name}}</td>
                 <td>{{userModel.getRoleName()}}</td>
@@ -31,21 +31,23 @@
             <ul class="pagination"
                 *ngIf="showPagination()"
             >
-              <li class="page-item">
+              <li class="page-item animated fadeIn">
                 <a class="page-link" href="#" aria-label="Previous">
                   <span aria-hidden="true">&laquo;</span>
                   <span class="sr-only">Previous</span>
                 </a>
               </li>
 
-              <li *ngFor="let page of [].constructor(pages);let indexOfelement=index" class="page-item"
+              <li *ngFor="let page of [].constructor(pages);let indexOfelement=index" class="page-item animated fadeIn"
                   [class.active]="(indexOfelement+1) == currentPage"
               >
-                <a class="page-link" href="#">
+                <a class="page-link cursor-pointer"
+                   (click)="changePage((indexOfelement+1))"
+                >
                   {{indexOfelement+1}}</a>
               </li>
 
-              <li class="page-item"
+              <li class="page-item animated fadeIn"
                   *ngIf="showNextIcon()"
               >
                 <a class="page-link" href="#" aria-label="Next">

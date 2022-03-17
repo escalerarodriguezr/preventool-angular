@@ -11,26 +11,23 @@ import {SearchUserInterface} from "./search-user.interface";
 })
 export class SearchUserService {
 
-  private queryParams:HttpParams = new HttpParams();
-
   constructor(
     private http:HttpClient,
     private router:Router,
     private httpBaseService:HttpBaseService
   )
   {
-    this.queryParams = this.queryParams.append("pageSize",3);
+
   }
 
-  public invoke():Observable<SearchUserInterface>
+  public invoke(queryParams:HttpParams):Observable<SearchUserInterface>
   {
     return this.http.get<SearchUserInterface>(
       `${ environment.api_url}user`,
       {
         headers: this.httpBaseService.getBaseHeaders(),
-        params: this.queryParams
+        params: queryParams
       }
     );
-
   }
 }

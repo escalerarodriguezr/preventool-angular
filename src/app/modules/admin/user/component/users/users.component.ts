@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SearchUserService} from "../../service/search-user/search-user.service";
 import {User} from "../../../../../model/user/user.model";
 import {SearchUserInterface, UserInterface} from "../../service/search-user/search-user.interface";
+import {HttpParams} from "@angular/common/http";
 
 @Component({
   selector: 'app-users',
@@ -15,25 +16,40 @@ export class UsersComponent implements OnInit {
   public pages:number = 0;
   public currentPage:number = 0;
 
+  private queryParams:HttpParams = new HttpParams();
+
   constructor(
     private searchUserService:SearchUserService
   ) { }
 
   ngOnInit(): void {
-    this.searchUserService.invoke().subscribe({
+    this.resetQueryParams();
+    this.getUsers();
+
+  }
+
+  private resetQueryParams():void
+  {
+    this.queryParams = this.queryParams.append('pageSize',3);
+    this.queryParams = this.queryParams.append('currentPage',1);
+  }
+
+  private getUsers():void
+  {
+    this.searchUserService.invoke(this.queryParams).subscribe({
       next:(response:SearchUserInterface)=>{
-        console.log(response);
         this.total = response.total;
         this.pages = response.pages;
         this.currentPage = response.currentPage;
-        console.log(this.currentPage);
         this.usersToModel(response.users);
       }
     });
+
   }
 
   private usersToModel(users:UserInterface[]):void
   {
+    this.users = [];
     users.forEach((user)=>{
       let userModel = new User(
         user.id,
@@ -58,6 +74,12 @@ export class UsersComponent implements OnInit {
       return true
     }
     return false;
+  }
+
+  public changePage(selectedPage:number):void
+  {
+    this.queryParams = this.queryParams.append('currentPage',selectedPage);
+    this.getUsers();
   }
 
 }
