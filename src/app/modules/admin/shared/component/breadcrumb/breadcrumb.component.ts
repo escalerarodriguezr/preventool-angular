@@ -22,7 +22,7 @@ export class BreadcrumbComponent implements OnInit {
       },
 
     ],
-    
+
     //Users
     '/admin/user/users': [
       {
@@ -32,7 +32,7 @@ export class BreadcrumbComponent implements OnInit {
       },
       {
         title: 'Listado Usuarios',
-        url: '/admin/users/users'
+        url: '/admin/user/users'
       }
     ],
     '/admin/user/create': [
@@ -43,7 +43,7 @@ export class BreadcrumbComponent implements OnInit {
       },
       {
         title: 'Crear usuario',
-        url: '/admin/users/create'
+        url: '/admin/user/create'
       }
     ],
 
