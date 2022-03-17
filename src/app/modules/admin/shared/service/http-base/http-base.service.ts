@@ -18,4 +18,11 @@ export class HttpBaseService {
       }
     }
   }
+
+  getBaseHeaders():any{
+    return {
+      'Authorization': 'Bearer '+this.token
+    }
+
+  }
 }
