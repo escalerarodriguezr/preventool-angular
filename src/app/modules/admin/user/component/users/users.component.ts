@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {SearchUserService} from "../../service/search-user/search-user.service";
 import {User} from "../../../../../model/user/user.model";
 import {SearchUserInterface, UserInterface} from "../../service/search-user/search-user.interface";
-import {HttpParams} from "@angular/common/http";
+import {HttpErrorResponse, HttpParams} from "@angular/common/http";
 import {HttpBaseService} from "../../../shared/service/http-base/http-base.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-users',
@@ -51,6 +52,10 @@ export class UsersComponent implements OnInit {
         this.currentPage = response.currentPage;
         this.usersToModel(response.users);
         this.httBaseService.screenUnLock();
+      },
+      error: (error:HttpErrorResponse) => {
+        this.httBaseService.screenUnLock();
+          Swal.fire('Error', 'Se ha producido un error inesperado', 'error' );
       }
     });
   }

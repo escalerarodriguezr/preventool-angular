@@ -39,7 +39,7 @@ export class User {
     }else if(this._role == 'ROLE_ADMIN'){
       return "Admin";
     }else{
-      return 'Trabajador';
+      return 'Usuario';
     }
   }
 }
