@@ -14,36 +14,36 @@ export class BreadcrumbComponent implements OnInit {
   public breadCrumbs$: Subscription;
   private breadCrumbsMap:any = {
     //Dashboard
-    '/admin': [
+    '/admin/dashboard': [
       {
         pageTitle: 'Dashboard',
         title: 'Dashboard',
-        url: '/admin'
+        url: '/admin/dashboard'
       },
 
     ],
-    
+
     //Users
     '/admin/user/users': [
       {
         pageTitle: 'Listado de usuarios',
         title: 'Dashboard',
-        url: '/admin'
+        url: '/admin/dashboard'
       },
       {
         title: 'Listado Usuarios',
-        url: '/admin/users/users'
+        url: '/admin/user/users'
       }
     ],
     '/admin/user/create': [
       {
         pageTitle: 'Crear usuario',
         title: 'Dashboard',
-        url: '/admin'
+        url: '/admin/dashboard'
       },
       {
         title: 'Crear usuario',
-        url: '/admin/users/create'
+        url: '/admin/user/create'
       }
     ],
 
@@ -52,7 +52,7 @@ export class BreadcrumbComponent implements OnInit {
       {
         pageTitle: 'Datos compañia',
         title: 'Dashboard',
-        url: '/admin'
+        url: '/admin/dashboard'
       },
       {
         title: 'Datos generales Compañia',
@@ -63,7 +63,7 @@ export class BreadcrumbComponent implements OnInit {
       {
         pageTitle: 'Progreso',
         title: 'Dashboard',
-        url: '/admin'
+        url: '/admin/dashboard'
       },
       {
         title: 'Progreso',

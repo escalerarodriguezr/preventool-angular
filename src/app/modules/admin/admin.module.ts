@@ -18,6 +18,9 @@ import {BreadcrumbComponent} from "./shared/component/breadcrumb/breadcrumb.comp
     SidebarComponent,
     BreadcrumbComponent
   ],
+  exports: [
+    AdminComponent
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,
