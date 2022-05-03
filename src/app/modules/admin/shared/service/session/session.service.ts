@@ -41,11 +41,11 @@ export class SessionService {
         map( res => {
           const session = res as SessionInterface;
           this.authUser = new AuthUser(
-            session.userId,
+            session.userUuid,
             session.email,
             session.role,
             session.name,
-            session.surname
+            session.lastname
           );
           localStorage.setItem('token', session.token );
           return true;

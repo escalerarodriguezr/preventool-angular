@@ -1,18 +1,18 @@
 export class AuthUser {
 
   constructor(
-    private _userId:string,
+    private _userUuid:string,
     private _email: string,
     private _role: string,
     private _name: string,
-    private _surname: string,
+    private _lastname: string,
   )
   {
   }
 
 
-  get userId(): string {
-    return this._userId;
+  get userUuid(): string {
+    return this._userUuid;
   }
 
   get email(): string {
@@ -27,8 +27,8 @@ export class AuthUser {
     return this._name;
   }
 
-  get surname(): string {
-    return this._surname;
+  get lastname(): string {
+    return this._lastname;
   }
 }
 

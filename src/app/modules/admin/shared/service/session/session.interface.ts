@@ -1,8 +1,9 @@
 export interface SessionInterface{
   token: string,
-  userId: string,
+  userId: number,
+  userUuid: string,
   email: string,
   role: string,
   name: string,
-  surname: string,
+  lastname: string,
 }
