@@ -60,6 +60,8 @@ export class SessionService {
   {
     localStorage.removeItem('token');
     this.authUser = null;
-    this.router.navigateByUrl('auth');
+    this.router.navigateByUrl('auth').then(() => {
+      window.location.reload();
+    });
   }
 }
