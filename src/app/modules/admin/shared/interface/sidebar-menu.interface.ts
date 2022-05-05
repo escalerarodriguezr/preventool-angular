@@ -15,6 +15,6 @@ export interface MenuModule{
 }
 
 export interface SideBarMenu{
-  company: MenuModule,
-  users: MenuModule,
+  users: MenuModule
+  // company: MenuModule,
 }

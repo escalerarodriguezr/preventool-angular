@@ -20,7 +20,6 @@ export class BreadcrumbComponent implements OnInit {
         title: 'Dashboard',
         url: '/admin/dashboard'
       },
-
     ],
 
     //Users
@@ -47,29 +46,29 @@ export class BreadcrumbComponent implements OnInit {
       }
     ],
 
-    //Company
-    '/admin/company/update': [
-      {
-        pageTitle: 'Datos compañia',
-        title: 'Dashboard',
-        url: '/admin/dashboard'
-      },
-      {
-        title: 'Datos generales Compañia',
-        url: '/admin/company/update'
-      }
-    ],
-    'admin/company/progress': [
-      {
-        pageTitle: 'Progreso',
-        title: 'Dashboard',
-        url: '/admin/dashboard'
-      },
-      {
-        title: 'Progreso',
-        url: 'admin/company/progress'
-      }
-    ],
+    // //Company
+    // '/admin/company/update': [
+    //   {
+    //     pageTitle: 'Datos compañia',
+    //     title: 'Dashboard',
+    //     url: '/admin/dashboard'
+    //   },
+    //   {
+    //     title: 'Datos generales Compañia',
+    //     url: '/admin/company/update'
+    //   }
+    // ],
+    // 'admin/company/progress': [
+    //   {
+    //     pageTitle: 'Progreso',
+    //     title: 'Dashboard',
+    //     url: '/admin/dashboard'
+    //   },
+    //   {
+    //     title: 'Progreso',
+    //     url: 'admin/company/progress'
+    //   }
+    // ],
 
   };
 

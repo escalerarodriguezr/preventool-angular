@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {UpdateCompanyComponent} from "../company/component/update-company/update-company.component";
 import {UsersComponent} from "./component/users/users.component";
 import {CreateUserComponent} from "./component/create-user/create-user.component";
 

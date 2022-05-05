@@ -1,12 +1,13 @@
 export interface UserInterface{
-  id:string;
+  id:number;
+  uuid:string;
   email:string;
-  role:string;
   name:string;
-  surname:string;
-  isEmailConfirmed:boolean;
+  lastName:string;
+  role:string;
   isActive:boolean;
-  creatorId:string;
+  isEmailConfirmed:boolean;
+  creatorUuid:string;
   updaterId:string
   createdOn:string
   updatedOn:string
@@ -16,5 +17,5 @@ export interface SearchUserInterface {
   total: number;
   pages: number;
   currentPage:number;
-  users:UserInterface[];
+  items:UserInterface[];
 }
