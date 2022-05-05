@@ -18,10 +18,10 @@
             </thead>
             <tbody>
               <tr *ngFor="let userModel of users" class="animated fadeIn">
-                <td>{{userModel.email}} {{userModel.surname}}</td>
-                <td>{{userModel.name}}</td>
-                <td>{{userModel.getRoleName()}}</td>
-                <td class="text-nowrap">
+                <td>{{userModel.email}}</td>
+                <td class="table-col-400">{{userModel.name}} {{userModel.lastName}}</td>
+                <td class="table-col-100">{{userModel.getRoleName()}}</td>
+                <td class="text-nowrap table-col-100">
                   <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                   <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
                 </td>
@@ -63,8 +63,8 @@
                 </a>
               </li>
             </ul>
-
           </div>
+
         </div>
       </div>
     </div>

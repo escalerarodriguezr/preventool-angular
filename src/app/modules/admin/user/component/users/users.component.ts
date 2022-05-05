@@ -37,7 +37,7 @@ export class UsersComponent implements OnInit {
 
   private resetQueryParams():void
   {
-    this.queryParams = this.queryParams.append('pageSize',3);
+    this.queryParams = this.queryParams.append('pageSize',10);
     this.queryParams = this.queryParams.append('currentPage',1);
     this.orderByRole();
   }
@@ -50,7 +50,7 @@ export class UsersComponent implements OnInit {
         this.total = response.total;
         this.pages = response.pages;
         this.currentPage = response.currentPage;
-        this.usersToModel(response.users);
+        this.usersToModel(response.items);
         this.httBaseService.screenUnLock();
       },
       error: (error:HttpErrorResponse) => {
@@ -66,10 +66,11 @@ export class UsersComponent implements OnInit {
     users.forEach((user)=>{
       let userModel = new User(
         user.id,
+        user.uuid,
         user.email,
         user.role,
         user.name,
-        user.surname
+        user.lastName
       )
       this.users.push(userModel);
     })

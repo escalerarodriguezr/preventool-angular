@@ -13,12 +13,10 @@ export class LoginService {
     private http: HttpClient
   )
   {
-
   }
 
   public login(email:string, password:string): Observable<loginResponseInterface>
   {
-    console.log(environment.auth_url);
     return this.http.post<loginResponseInterface>(
       environment.auth_url,
       {
@@ -26,7 +24,5 @@ export class LoginService {
         password: password
         }
       );
-
-
   }
 }

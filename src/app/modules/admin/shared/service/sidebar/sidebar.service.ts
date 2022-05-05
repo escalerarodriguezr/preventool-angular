@@ -9,34 +9,32 @@ import {AuthUser} from "../../../../../model/user/authUser.model";
 export class SidebarService {
 
   private _menu:SideBarMenu = {
-
-    company:{
-      module:"Modulo Empresa",
-      items:[
-        {
-          title: 'Compañia',
-          icon: 'mdi mdi-gauge',
-          submenu: [
-            {title: 'Datos generales', url: '/admin/company/update'},
-            {title: 'Progress', url: '/admin/company/progress'},
-          ]
-        }
-      ]
-    },
     users:{
       module:'Users',
       items:[
         {
           title: 'Usuarios',
-          icon: 'mdi mdi-folder-lock-open',
+          icon: 'mdi mdi-account-multiple',
           submenu: [
             {title: 'Listado de usuarios', url: '/admin/user/users'},
             {title: 'Crear usuario', url: '/admin/user/create'},
           ]
         }
       ]
-
-    }
+    },
+    // company:{
+    //   module:"Modulo Empresa",
+    //   items:[
+    //     {
+    //       title: 'Compañia',
+    //       icon: 'mdi mdi-gauge',
+    //       submenu: [
+    //         {title: 'Datos generales', url: '/admin/company/update'},
+    //         {title: 'Progress', url: '/admin/company/progress'},
+    //       ]
+    //     }
+    //   ]
+    // },
   }
 
 
@@ -58,7 +56,7 @@ export class SidebarService {
       // @ts-ignore
       transformedMenu.users.items[0].submenu.splice(1,1)
     }
-    
+
     return transformedMenu;
   }
 }
