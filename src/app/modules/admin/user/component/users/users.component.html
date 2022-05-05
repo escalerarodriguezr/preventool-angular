@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>
+                <span class="cursor-pointer" (click)="orderByEmail()">Email</span>
+              </th>
+              <th>
+                <span class="cursor-pointer" (click)="orderByName()">Nombre</span>
+              </th>
+              <th> <span class="cursor-pointer" (click)="orderByRole()">Rol</span></th>
+              <th class="text-nowrap">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let userModel of users" class="animated fadeIn">
+                <td>{{userModel.email}}</td>
+                <td class="table-col-400">{{userModel.name}} {{userModel.lastName}}</td>
+                <td class="table-col-100">{{userModel.getRoleName()}}</td>
+                <td class="text-nowrap table-col-100">
+                  <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                  <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+
+          <div class="d-flex justify-content-between mt-5 w-100">
+            <div><span>Total de usuarios: {{total}} - Mostrando página {{currentPage}} de {{pages}}</span></div>
+            <ul class="pagination"
+                *ngIf="showPagination()"
+            >
+              <li class="page-item animated fadeIn">
+                <a class="page-link cursor-pointer" aria-label="Previous"
+                   (click)="changePage(1)"
+                >
+                  <span aria-hidden="true">Primera</span>
+
+                </a>
+              </li>
+
+              <li *ngFor="let page of getPagesCollection()" class="page-item animated fadeIn"
+                  [class.active]="page == currentPage"
+              >
+                <a class="page-link cursor-pointer"
+                   (click)="changePage(page)"
+                >
+                  {{page}}</a>
+              </li>
+
+              <li class="page-item animated fadeIn"
+                  *ngIf="showLastPageButton()"
+              >
+                <a class="page-link cursor-pointer" aria-label="Next"
+                   (click)="changePage(pages)"
+                >
+                  <span aria-hidden="true">Última</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
