@@ -21,7 +21,7 @@ export class CreateUserComponent implements OnInit {
   public createUserForm:FormGroup;
 
   public nameHasError:boolean = false;
-  public surnameHasError:boolean = false;
+  public lastNameHasError:boolean = false;
   public emailRequiredError:boolean = false;
   public emailEmailError:boolean = false;
   public passwordRequiredError:boolean = false;
@@ -38,7 +38,7 @@ export class CreateUserComponent implements OnInit {
     const formOptions: AbstractControlOptions = { validators: this.confirmPassword('password', 'confirmPassword') };
     this.createUserForm = this.fb.group({
       name:['',Validators.required],
-      surname:['',Validators.required],
+      lastName:['',Validators.required],
       email:['',[Validators.required,Validators.email]],
       role:['ROLE_ADMIN',Validators.required],
       password:['',[Validators.required,Validators.minLength(6)]],
@@ -53,9 +53,9 @@ export class CreateUserComponent implements OnInit {
         this.nameHasError = status == 'INVALID' ? true : false;
       }
     });
-    this.createUserForm.get('surname')?.statusChanges.subscribe({
+    this.createUserForm.get('lastName')?.statusChanges.subscribe({
       next:(status:FormControlStatus)=>{
-        this.surnameHasError = status == 'INVALID' ? true : false;
+        this.lastNameHasError = status == 'INVALID' ? true : false;
       }
     });
     this.createUserForm.get('email')?.statusChanges.subscribe({
@@ -110,6 +110,8 @@ export class CreateUserComponent implements OnInit {
     if(!this.createUserForm.invalid){
       this.createUserService.invoke(this.createUserForm.value).subscribe({
         next:response=>{
+
+          console.log(response);
           Swal.fire(
             'Usuario creado',
             `${ this.createUserForm.get('email')?.value } fue creado correctamente`,
@@ -119,11 +121,15 @@ export class CreateUserComponent implements OnInit {
         error: (error:HttpErrorResponse) => {
           if( error.status == 400 ){
             if((error.error.class).includes('BadRequestHttpException')){
-              Swal.fire('Error', 'Campos inválidos: '+error.error.message, 'error' );
+              Swal.fire('Info', 'Campos inválidos: '+error.error.message, 'info' );
             }
           }else if( error.status == 409 ){
             if((error.error.class).includes('UserAlreadyExistsException')){
-              Swal.fire('Error', 'Ya existe un usuario registrado con el email: ' + this.createUserForm.get('email')?.value  );
+              Swal.fire('Info', 'Ya existe un usuario registrado con el email: ' + this.createUserForm.get('email')?.value, 'info'  );
+            }else if((error.error.class).includes('ActionUserActionNotAllowedException')){
+              Swal.fire('Info', 'No tienes permisos suficientes para realizar esta acción', 'info');
+            }else{
+              Swal.fire('Error', 'Se ha producido un error inesperado', 'error' )
             }
           }else{
             Swal.fire('Error', 'Se ha producido un error inesperado', 'error' );

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {SideBarMenu} from "../../interface/sidebar-menu.interface";
+import {SessionService} from "../session/session.service";
+import {AuthUser} from "../../../../../model/user/authUser.model";
 
 @Injectable({
   providedIn: 'root'
@@ -38,10 +40,25 @@ export class SidebarService {
   }
 
 
-  constructor() { }
+  constructor(
+    private sessionService:SessionService
+  ) {
+
+  }
 
 
   get menu(): any {
-    return this._menu;
+    return this.transformMenu();
+  }
+
+  private transformMenu():object
+  {
+    let transformedMenu = Object.assign({}, this._menu)
+    if( this.sessionService.authUser?.role === 'ROLE_ADMIN' ){
+      // @ts-ignore
+      transformedMenu.users.items[0].submenu.splice(1,1)
+    }
+    
+    return transformedMenu;
   }
 }
