@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
 
+The project aims to provide the user interface to consume the test api exposed by the application that you can obtain in the following repository:
+https://github.com/escalerarodriguezr/preventool-app
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
