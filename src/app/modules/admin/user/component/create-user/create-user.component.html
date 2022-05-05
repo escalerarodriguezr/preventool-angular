@@ -64,7 +64,7 @@
               >
             </div>
             <span *ngIf="passwordRequiredError" class="text-danger d-block">El password es requerido</span>
-            <span *ngIf="passwordMinError" class="text-danger d-block">El password tiene que ser como mínimo de 6 letras</span>
+            <span *ngIf="passwordMinError" class="text-danger d-block">El password tiene que ser como mínimo de 6 catacteres</span>
           </div>
           <div class="form-group col-6">
             <label for="pwd2">Confirmar Password*</label>
@@ -83,7 +83,6 @@
                     [disabled]="!formValid"
             >Guardar</button>
           </div>
-
         </form>
       </div>
     </div>

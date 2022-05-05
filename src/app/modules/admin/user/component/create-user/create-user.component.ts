@@ -4,7 +4,6 @@ import {
   FormBuilder,
   FormControlStatus,
   FormGroup,
-  ValidationErrors, ValidatorFn,
   Validators
 } from "@angular/forms";
 import {CreateUserService} from "../../service/create-user/create-user.service";
@@ -50,12 +49,12 @@ export class CreateUserComponent implements OnInit {
   ngOnInit(): void {
     this.createUserForm.get('name')?.statusChanges.subscribe({
       next:(status:FormControlStatus)=>{
-        this.nameHasError = status == 'INVALID' ? true : false;
+        this.nameHasError = status == 'INVALID';
       }
     });
     this.createUserForm.get('lastName')?.statusChanges.subscribe({
       next:(status:FormControlStatus)=>{
-        this.lastNameHasError = status == 'INVALID' ? true : false;
+        this.lastNameHasError = status == 'INVALID';
       }
     });
     this.createUserForm.get('email')?.statusChanges.subscribe({
@@ -67,7 +66,6 @@ export class CreateUserComponent implements OnInit {
     });
     this.createUserForm.get('password')?.statusChanges.subscribe({
       next:(status:FormControlStatus)=>{
-        console.log(this.createUserForm.get('password')?.errors)
         this.passwordRequiredError = this.createUserForm.get('password')?.hasError('required') ? true : false;
         this.passwordMinError = this.createUserForm.get('password')?.hasError('minlength') ? true : false;
 
@@ -81,7 +79,6 @@ export class CreateUserComponent implements OnInit {
         }
       }
     })
-
   }
 
   get formValid():boolean
@@ -101,7 +98,6 @@ export class CreateUserComponent implements OnInit {
       } else {
         pass2Control?.setErrors({ confirmPassword: true })
       }
-
     }
   }
 
@@ -110,8 +106,6 @@ export class CreateUserComponent implements OnInit {
     if(!this.createUserForm.invalid){
       this.createUserService.invoke(this.createUserForm.value).subscribe({
         next:response=>{
-
-          console.log(response);
           Swal.fire(
             'Usuario creado',
             `${ this.createUserForm.get('email')?.value } fue creado correctamente`,
@@ -138,5 +132,4 @@ export class CreateUserComponent implements OnInit {
       });
     }
   }
-
 }

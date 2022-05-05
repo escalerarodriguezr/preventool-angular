@@ -10,7 +10,6 @@ export class AuthUser {
   {
   }
 
-
   get userUuid(): string {
     return this._userUuid;
   }

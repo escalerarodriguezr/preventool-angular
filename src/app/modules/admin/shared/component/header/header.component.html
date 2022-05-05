@@ -14,13 +14,17 @@
         <img src="/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
         <!-- Light Logo icon -->
         <img src="/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
-      </b>
+
+        </b>
         <!--End Logo icon -->
-        <!-- Logo text --><span>
-                         <!-- dark Logo text -->
-                         <img src="/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+        <!-- Logo text -->
+        <span>
+          <!-- dark Logo text -->
+           <img src="/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
         <!-- Light Logo text -->
-                         <img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+           <img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+        </span>
+      </a>
     </div>
     <!-- ============================================================== -->
     <!-- End Logo -->
@@ -49,20 +53,12 @@
             <ul class="dropdown-user">
               <li>
                 <div class="dw-user-box">
-                  <div class="u-img"><img src="/assets/images/users/user-icon.png" alt="#"></div>
-                  <div class="u-text">
+                  <div class="u-text m-t-5">
                     <h4>{{sessionService.authUser?.name}} {{sessionService.authUser?.lastname}}</h4>
-                    <p class="text-muted">
-                      {{sessionService.authUser?.email}}
-                    </p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                    <p class="text-muted">{{sessionService.authUser?.email}}</p>
+                  </div>
                 </div>
               </li>
-              <li role="separator" class="divider"></li>
-              <li><a routerLink="/dashboard/perfil"><i class="ti-user active"></i> Mi Perfil</a></li>
-              <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-              <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a routerLink="account-settings"><i class="ti-settings"></i> Account Setting</a></li>
               <li role="separator" class="divider"></li>
               <li class="cursor-pointer"><a (click)="sessionService.logOut()"><i class="fa fa-power-off"></i> Logout</a></li>
             </ul>

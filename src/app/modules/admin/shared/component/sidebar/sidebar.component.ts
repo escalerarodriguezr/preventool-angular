@@ -18,8 +18,8 @@ export class SidebarComponent implements OnInit {
     this.menu = this.sidebarService.menu;
   }
 
-  ngOnInit(): void {
-
+  ngOnInit(): void
+  {
   }
 
 }
