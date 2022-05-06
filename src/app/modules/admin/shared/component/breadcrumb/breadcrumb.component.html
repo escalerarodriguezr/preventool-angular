@@ -11,7 +11,8 @@
       <li class="breadcrumb-item"
           *ngFor="let item of currentBreadCrumbs"
       >
-        <a routerLink="{{item['url']}}">{{item['title']}}</a>
+        <a routerLink="{{item['url']}}" *ngIf="item['navigate']">{{item['title']}}</a>
+        <span *ngIf="!item['navigate']">{{item['title']}}</span>
       </li>
     </ol>
   </div>
