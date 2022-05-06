@@ -24,6 +24,8 @@ export class UsersComponent implements OnInit {
 
   private queryParams:HttpParams = new HttpParams();
 
+  public filterByEmail:string|null = null
+
   constructor(
     private httBaseService:HttpBaseService,
     private searchUserService:SearchUserService
@@ -37,9 +39,25 @@ export class UsersComponent implements OnInit {
 
   private resetQueryParams():void
   {
+    this.queryParams = new HttpParams();
     this.queryParams = this.queryParams.append('pageSize',10);
     this.queryParams = this.queryParams.append('currentPage',1);
-    this.orderByRole();
+
+    // this.queryParams = this.queryParams.append('orderBy','role');
+    // this.queryParams = this.queryParams.append('orderDirection','DESC')
+  }
+
+  private resetOrderParams():void
+  {
+
+    this.queryParams = this.queryParams.set('currentPage',1);
+    this.queryParams = this.queryParams.delete('orderBy')
+
+  }
+
+  private resetFilters():void
+  {
+    this.filterByEmail = null;
   }
 
   private getUsers():void
@@ -110,25 +128,39 @@ export class UsersComponent implements OnInit {
 
   public orderByEmail():void
   {
+    this.queryParams = this.queryParams.set('currentPage',1);
     this.orderByEmailDirection = (this.orderByEmailDirection == 'DESC') ? 'ASC' : 'DESC';
-    this.queryParams = this.queryParams.append('orderBy','email');
-    this.queryParams = this.queryParams.append('orderDirection',this.orderByEmailDirection);
+    this.queryParams = this.queryParams.set('orderBy','email');
+    this.queryParams = this.queryParams.set('orderDirection',this.orderByEmailDirection);
+
     this.getUsers();
   }
 
   public orderByName():void
   {
+    this.queryParams = this.queryParams.set('currentPage',1);
     this.orderByNameDirection = (this.orderByNameDirection == 'DESC') ? 'ASC' : 'DESC';
-    this.queryParams = this.queryParams.append('orderBy','name');
-    this.queryParams = this.queryParams.append('orderDirection',this.orderByNameDirection);
+    this.queryParams = this.queryParams.set('orderBy','name');
+    this.queryParams = this.queryParams.set('orderDirection',this.orderByNameDirection);
     this.getUsers();
   }
 
   public orderByRole():void
   {
+    this.queryParams = this.queryParams.set('currentPage',1);
     this.orderByRoleDirection = (this.orderByRoleDirection == 'DESC') ? 'ASC' : 'DESC';
-    this.queryParams = this.queryParams.append('orderBy','role');
-    this.queryParams = this.queryParams.append('orderDirection',this.orderByRoleDirection);
+    this.queryParams = this.queryParams.set('orderBy','role');
+    this.queryParams = this.queryParams.set('orderDirection',this.orderByRoleDirection);
+    this.getUsers();
+  }
+
+  public applyFilters():void
+  {
+    this.resetQueryParams();
+    if( this.filterByEmail !== null && this.filterByEmail.length > 0 ){
+      this.queryParams = this.queryParams.append('filterByEmail',this.filterByEmail.trim());
+    }
+
     this.getUsers();
   }
 

@@ -2,6 +2,31 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12 col-md-3">
+            <div class="form-group">
+              <label for="filterByEmail">Email</label>
+              <input type="text" class="form-control" id="filterByEmail"
+                     name="filterByEmail" [(ngModel)]="filterByEmail"
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-end">
+          <button type="button" class="btn waves-effect waves-light btn-block btn-info w-200"
+                  (click)="applyFilters()"
+          >Buscar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
@@ -27,11 +52,10 @@
                 </td>
               </tr>
             </tbody>
-
           </table>
 
           <div class="d-flex justify-content-between mt-5 w-100">
-            <div><span>Total de usuarios: {{total}} - Mostrando página {{currentPage}} de {{pages}}</span></div>
+            <div><span>Total de usuarios: {{total}}</span> <span *ngIf="total"> - Mostrando página {{currentPage}} de {{pages}}</span></div>
             <ul class="pagination"
                 *ngIf="showPagination()"
             >

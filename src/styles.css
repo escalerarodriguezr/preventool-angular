@@ -25,3 +25,7 @@ div.screenLock p {
   -o-transform: translate(-50%, -50%);
   text-align: center;
 }
+
+.w-200{
+  width: 200px;
+}
