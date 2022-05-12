@@ -10,7 +10,7 @@ import {FormBuilder, FormControlStatus, FormGroup, Validators} from "@angular/fo
 import {HttpBaseService} from "../../../../shared/service/http-base/http-base.service";
 import {UpdateUserService} from "../../../service/update-user/update-user.service";
 import {UploadFileService} from "../../../../shared/service/upload-file/upload-file.service";
-import {environment} from "../../../../../../../environments/environment";
+import {UploadUserAvatarService} from "../../../service/upload-user-avatar/upload-user-avatar.service";
 
 @Component({
   selector: 'app-edit-user',
@@ -34,7 +34,8 @@ export class EditUserComponent implements OnInit {
     private fb:FormBuilder,
     private httpBaseService:HttpBaseService,
     private updateUserService:UpdateUserService,
-    public uploadFileService:UploadFileService
+    public uploadFileService:UploadFileService,
+    private uploadUserAvatarService:UploadUserAvatarService
   ) {
 
     this.updateUserForm = this.fb.group({
@@ -66,11 +67,8 @@ export class EditUserComponent implements OnInit {
               getUserByUuidResponse.avatar
             );
 
-            console.log(this.user.getAvatarResource());
-
             this.setUserInitValues();
             this.httpBaseService.screenUnLock();
-
           },
           error: (error:HttpErrorResponse) => {
             this.httpBaseService.screenUnLock();
@@ -161,5 +159,39 @@ export class EditUserComponent implements OnInit {
 
   public showChangeAvatarModal():void{
     this.uploadFileService.showModal();
+  }
+
+  public uploadAvatar():void
+  {
+    this.uploadUserAvatarService.invoke(this.user?.userUuid!, this.uploadFileService.newFileFile!).subscribe({
+      next:response=>{
+        Swal.fire(
+          'Avatar modificado',
+          `El avatar se ha modificado correctamente`,
+          'success'
+        );
+      },
+      error: (error:HttpErrorResponse) => {
+        if( error.status == 400 ){
+          if((error.error.class).includes('BadRequestHttpException')){
+            Swal.fire('Info', 'Campos inválidos: '+error.error.message, 'info' );
+          }
+        }else if( error.status == 409 ){
+          if((error.error.class).includes('ActionUserActionNotAllowedException')){
+            Swal.fire('Info', 'No tienes permisos suficientes para realizar esta acción', 'info');
+          }else{
+            Swal.fire('Error', 'Se ha producido un error inesperado', 'error' )
+          }
+        }else if( error.status == 404 ){
+          if((error.error.class).includes('UserNotFoundException')){
+            Swal.fire('Info', 'El usuario que intentas modificar no existe', 'info');
+          }else{
+            Swal.fire('Error', 'Se ha producido un error inesperado', 'error' )
+          }
+        } else{
+          Swal.fire('Error', 'Se ha producido un error inesperado', 'error' );
+        }
+      }
+    });
   }
 }

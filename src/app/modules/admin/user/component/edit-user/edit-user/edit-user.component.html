@@ -55,8 +55,6 @@
             <span *ngIf="emailRequiredError" class="text-danger d-block">El email es requerido</span>
             <span *ngIf="emailEmailError" class="text-danger d-block">El email tiene un formato inválido</span>
           </div>
-
-
           <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-info waves-effect waves-light m-r-10"
                     [class.disabled]="!formValid"
@@ -67,6 +65,7 @@
       </div>
     </div>
   </div>
+
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
@@ -75,20 +74,18 @@
         <div class="text-center">
           <img *ngIf="!uploadFileService.newFile" [src]="getUser().getAvatarResource()" class="img-avatar">
           <img *ngIf="uploadFileService.newFile" [src]="uploadFileService.newFileResource" class="img-avatar">
-
         </div>
-
-        <input type="file"
-               name="avatar"
-               hidden
-        >
         <br>
-        <br>
-        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"
-                (click)="showChangeAvatarModal()"
+        <button type="button" class="btn btn-success waves-effect waves-light m-r-10"
+          (click)="showChangeAvatarModal()"
         >
-          <i class="fa fa-save"></i>
-          Cambiar avatar
+          <i class="fa fa-save"></i>Cambiar avatar
+        </button>
+        <button type="button" class="btn btn-info waves-effect waves-light m-r-10 pull-right"
+          *ngIf="uploadFileService.newFile"
+          (click)="uploadAvatar()"
+        >
+          <i class="fa fa-save"></i>Guardar avatar
         </button>
       </div>
     </div>

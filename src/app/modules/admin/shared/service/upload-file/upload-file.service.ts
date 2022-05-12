@@ -8,6 +8,7 @@ export class UploadFileService {
   private _hideModal:boolean = true;
   private _newFile:boolean = false;
   private _newFileResource:any;
+  private _newFileFile:File|undefined;
 
   constructor(
 
@@ -27,6 +28,14 @@ export class UploadFileService {
 
   set newFileResource(value: any) {
     this._newFileResource = value;
+  }
+
+  get newFileFile(): File | undefined {
+    return this._newFileFile;
+  }
+
+  set newFileFile(value: File | undefined) {
+    this._newFileFile = value;
   }
 
   public closeModal():void

@@ -16,7 +16,7 @@ export class UploadFileComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   public closeModal():void
   {
     this.uploadFileService.closeModal();
@@ -30,11 +30,9 @@ export class UploadFileComponent implements OnInit {
     reader.readAsDataURL( file );
     reader.onloadend = () => {
       this.uploadFileService.newFileResource = reader.result;
+      this.uploadFileService.newFileFile = file;
       this.uploadFileService.newFileLoaded();
       this.uploadFileService.closeModal();
-
     }
-
   }
-
 }
