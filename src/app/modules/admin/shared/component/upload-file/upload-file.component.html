@@ -29,7 +29,8 @@
           </div>
 
           <input type="file"
-                 name="avatar"
+                 name="new_file"
+                 #newFile
 
           >
         </div>
@@ -42,6 +43,7 @@
 
           >Cerrar</button>
           <button type="button" class="btn btn-primary"
+                  (click)="loadFile(newFile)"
 
           >Cargar</button>
         </div>

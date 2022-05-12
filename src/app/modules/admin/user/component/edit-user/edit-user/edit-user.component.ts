@@ -34,7 +34,7 @@ export class EditUserComponent implements OnInit {
     private fb:FormBuilder,
     private httpBaseService:HttpBaseService,
     private updateUserService:UpdateUserService,
-    private uploadFileService:UploadFileService
+    public uploadFileService:UploadFileService
   ) {
 
     this.updateUserForm = this.fb.group({

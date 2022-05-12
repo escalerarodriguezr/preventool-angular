@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 export class UploadFileService {
 
   private _hideModal:boolean = true;
+  private _newFile:boolean = false;
+  private _newFileResource:any;
 
   constructor(
 
@@ -15,6 +17,18 @@ export class UploadFileService {
     return this._hideModal;
   }
 
+  get newFile(): boolean {
+    return this._newFile;
+  }
+
+  get newFileResource(): any {
+    return this._newFileResource;
+  }
+
+  set newFileResource(value: any) {
+    this._newFileResource = value;
+  }
+
   public closeModal():void
   {
     this._hideModal = true;
@@ -22,5 +36,10 @@ export class UploadFileService {
 
   public showModal():void{
     this._hideModal = false;
+  }
+
+  public newFileLoaded():void
+  {
+    this._newFile = true;
   }
 }
