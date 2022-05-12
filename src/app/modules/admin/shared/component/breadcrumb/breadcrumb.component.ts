@@ -18,7 +18,8 @@ export class BreadcrumbComponent implements OnInit {
       {
         pageTitle: 'Dashboard',
         title: 'Dashboard',
-        url: '/admin/dashboard'
+        url: '/admin/dashboard',
+        navigate: true
       },
     ],
 
@@ -27,22 +28,40 @@ export class BreadcrumbComponent implements OnInit {
       {
         pageTitle: 'Listado de usuarios',
         title: 'Dashboard',
-        url: '/admin/dashboard'
+        url: '/admin/dashboard',
+        navigate: true
       },
       {
         title: 'Listado Usuarios',
-        url: '/admin/user/users'
+        url: '/admin/user/users',
+        navigate: true
       }
     ],
     '/admin/user/create': [
       {
         pageTitle: 'Crear usuario',
         title: 'Dashboard',
-        url: '/admin/dashboard'
+        url: '/admin/dashboard',
+        navigate: true
       },
       {
         title: 'Crear usuario',
-        url: '/admin/user/create'
+        url: '/admin/user/create',
+        navigate: true
+      }
+    ],
+
+    '/admin/user/edit': [
+      {
+        pageTitle: 'Editar usuario',
+        title: 'Listado de Usuarios',
+        url: '/admin/user/users',
+        navigate: true
+      },
+      {
+        title: 'Editar usuario',
+        url: '#',
+        navigate:false
       }
     ],
 
@@ -84,7 +103,8 @@ export class BreadcrumbComponent implements OnInit {
       )
       .subscribe((res )=>{
         const navigationEnd = res as NavigationEnd;
-        this.currentBreadCrumbs = this.breadCrumbsMap[navigationEnd.urlAfterRedirects];
+        console.log(navigationEnd.urlAfterRedirects);
+        this.currentBreadCrumbs = this.breadCrumbsMap[this.tranformPath(navigationEnd.urlAfterRedirects)];
       })
   }
 
@@ -93,6 +113,13 @@ export class BreadcrumbComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.breadCrumbs$.unsubscribe();
+  }
+
+  private tranformPath(path:string):string {
+    if (path.includes('/admin/user/edit')) {
+      return '/admin/user/edit';
+    }
+    return path;
   }
 
 }
