@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-md-6">
     <div class="card">
       <div class="card-body">
         <form class="form p-t-20"
@@ -64,6 +64,31 @@
             >Guardar</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Avatar</h4>
+        <h6 class="card-subtitle">Imagen de avatar del usuario</h6>
+        <div class="text-center">
+          <img [src]="getUser().getAvatarResource()" class="img-avatar">
+
+        </div>
+
+        <input type="file"
+               name="avatar"
+               hidden
+        >
+        <br>
+        <br>
+        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"
+                (click)="showChangeAvatarModal()"
+        >
+          <i class="fa fa-save"></i>
+          Cambiar avatar
+        </button>
       </div>
     </div>
   </div>

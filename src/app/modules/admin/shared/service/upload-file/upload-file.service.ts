@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UploadFileService {
 
-  private _hideModal:boolean = false;
+  private _hideModal:boolean = true;
 
   constructor(
 
@@ -18,5 +18,9 @@ export class UploadFileService {
   public closeModal():void
   {
     this._hideModal = true;
+  }
+
+  public showModal():void{
+    this._hideModal = false;
   }
 }

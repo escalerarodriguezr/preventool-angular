@@ -4,6 +4,7 @@ export interface GetUserByUuidInterface{
   email:string;
   name:string;
   lastName:string;
+  avatar:string|null
   role:string;
   isActive:boolean;
   isEmailConfirmed:boolean;

@@ -9,6 +9,8 @@ import Swal from "sweetalert2";
 import {FormBuilder, FormControlStatus, FormGroup, Validators} from "@angular/forms";
 import {HttpBaseService} from "../../../../shared/service/http-base/http-base.service";
 import {UpdateUserService} from "../../../service/update-user/update-user.service";
+import {UploadFileService} from "../../../../shared/service/upload-file/upload-file.service";
+import {environment} from "../../../../../../../environments/environment";
 
 @Component({
   selector: 'app-edit-user',
@@ -31,7 +33,8 @@ export class EditUserComponent implements OnInit {
     private service:GetUserByUuidService,
     private fb:FormBuilder,
     private httpBaseService:HttpBaseService,
-    private updateUserService:UpdateUserService
+    private updateUserService:UpdateUserService,
+    private uploadFileService:UploadFileService
   ) {
 
     this.updateUserForm = this.fb.group({
@@ -52,6 +55,7 @@ export class EditUserComponent implements OnInit {
       .subscribe(
         {
           next:(getUserByUuidResponse:GetUserByUuidInterface)=>{
+
             this.user = new User(
               getUserByUuidResponse.id,
               getUserByUuidResponse.uuid,
@@ -59,7 +63,10 @@ export class EditUserComponent implements OnInit {
               getUserByUuidResponse.role,
               getUserByUuidResponse.name,
               getUserByUuidResponse.lastName,
+              getUserByUuidResponse.avatar
             );
+
+            console.log(this.user.getAvatarResource());
 
             this.setUserInitValues();
             this.httpBaseService.screenUnLock();
@@ -97,6 +104,11 @@ export class EditUserComponent implements OnInit {
   get formValid():boolean
   {
     return this.updateUserForm.valid;
+  }
+
+  public getUser():User
+  {
+    return <User>this.user;
   }
 
   private setUserInitValues():void
@@ -145,5 +157,9 @@ export class EditUserComponent implements OnInit {
         }
       });
     }
+  }
+
+  public showChangeAvatarModal():void{
+    this.uploadFileService.showModal();
   }
 }

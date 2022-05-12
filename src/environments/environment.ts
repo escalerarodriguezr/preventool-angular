@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   auth_url: 'http://localhost:250/api/login_check',
-  api_url: 'http://localhost:250/api/v1/'
+  api_url: 'http://localhost:250/api/v1/',
+  digital_ocean_storage: 'https://escadev.ams3.digitaloceanspaces.com/'
 };
 
 /*
