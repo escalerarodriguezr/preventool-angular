@@ -13,6 +13,7 @@
               <div class="input-group-addon"><i class="ti-id-badge"></i></div>
               <select class="form-control custom-select" data-placeholder="Seleccionar un rol" tabindex="1"
                       formControlName="role"
+                      [attr.disabled]="true"
               >
                 <option value="ROLE_ROOT">Root</option>
                 <option value="ROLE_ADMIN">Admin</option>
