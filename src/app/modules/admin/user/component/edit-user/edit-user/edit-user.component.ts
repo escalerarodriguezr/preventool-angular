@@ -43,6 +43,8 @@ export class EditUserComponent implements OnInit {
       lastName:['',Validators.required],
       email:['',[Validators.required,Validators.email]],
       role:['',Validators.required],
+      isActive:['',Validators.required],
+
     });
 
   }
@@ -64,7 +66,8 @@ export class EditUserComponent implements OnInit {
               getUserByUuidResponse.role,
               getUserByUuidResponse.name,
               getUserByUuidResponse.lastName,
-              getUserByUuidResponse.avatar
+              getUserByUuidResponse.avatar,
+              getUserByUuidResponse.isActive
             );
 
             this.setUserInitValues();
@@ -115,7 +118,8 @@ export class EditUserComponent implements OnInit {
       name:this.user?.name,
       lastName:this.user?.lastName,
       email:this.user?.email,
-      role:this.user?.role
+      role:this.user?.role,
+      isActive:this.user?.isActive
     }
     this.updateUserForm.setValue(initUser);
   }

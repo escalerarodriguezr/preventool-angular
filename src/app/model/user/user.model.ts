@@ -8,7 +8,8 @@ export class User {
     private _role: string,
     private _name: string,
     private _lastName: string,
-    private _avatar: string|null
+    private _avatar: string|null,
+    private _isActive:boolean
   )
   {
   }
@@ -39,6 +40,10 @@ export class User {
 
   get avatar(): string | null {
     return this._avatar;
+  }
+
+  get isActive(): boolean {
+    return this._isActive;
   }
 
   getRoleName(): string{

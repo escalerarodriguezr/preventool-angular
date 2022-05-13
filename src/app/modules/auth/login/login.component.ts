@@ -50,11 +50,13 @@ export class LoginComponent implements OnInit {
         error: (error:HttpErrorResponse) => {
           if( error.status == 404 ){
             this.invalidEmailResponse = true;
-          }
-          if( error.status == 401 ){
+          }else if ( error.status == 401 ){
             this.invalidPasswordResponse = true;
-          }
-          if( error.status == 500 ){
+          }else if( error.status == 409 ){
+            if((error.error.class).includes('UserAccountNotActiveException')){
+              Swal.fire('Info', 'El usuario que intentas modificar no tienen cuenta activa', 'info');
+            }
+          }else{
             Swal.fire('Error', 'Se ha producido un error inesperado', 'error' );
           }
         }
