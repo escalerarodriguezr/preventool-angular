@@ -89,7 +89,8 @@ export class UsersComponent implements OnInit {
         user.role,
         user.name,
         user.lastName,
-        null
+        null,
+        user.isActive
       )
       this.users.push(userModel);
     })

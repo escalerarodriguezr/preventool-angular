@@ -8,6 +8,19 @@
               (ngSubmit)="submit()"
         >
           <div class="form-group col-6">
+            <div class="col-6">
+              <div class="demo-switch-title">Activar usuario</div>
+              <div class="switch">
+                <label>
+                  <input type="checkbox"
+                         formControlName="isActive"
+                  ><span class="lever switch-col-light-green"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
             <label for="name">Rol del usuario</label>
             <div class="input-group">
               <div class="input-group-addon"><i class="ti-id-badge"></i></div>
