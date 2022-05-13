@@ -103,7 +103,6 @@ export class BreadcrumbComponent implements OnInit {
       )
       .subscribe((res )=>{
         const navigationEnd = res as NavigationEnd;
-        console.log(navigationEnd.urlAfterRedirects);
         this.currentBreadCrumbs = this.breadCrumbsMap[this.tranformPath(navigationEnd.urlAfterRedirects)];
       })
   }
