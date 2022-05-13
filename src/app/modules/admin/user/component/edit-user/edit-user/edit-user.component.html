@@ -72,8 +72,8 @@
         <h4 class="card-title">Avatar</h4>
         <h6 class="card-subtitle">Imagen de avatar del usuario</h6>
         <div class="text-center">
-          <img *ngIf="!uploadFileService.newFile" [src]="getUser().getAvatarResource()" class="img-avatar">
-          <img *ngIf="uploadFileService.newFile" [src]="uploadFileService.newFileResource" class="img-avatar">
+          <img *ngIf="!uploadImageService.newFile" [src]="getUser().getAvatarResource()" class="img-avatar">
+          <img *ngIf="uploadImageService.newFile" [src]="uploadImageService.newFileResource" class="img-avatar">
         </div>
         <br>
         <button type="button" class="btn btn-success waves-effect waves-light m-r-10"
@@ -82,7 +82,7 @@
           <i class="fa fa-save"></i>Cambiar avatar
         </button>
         <button type="button" class="btn btn-info waves-effect waves-light m-r-10 pull-right"
-          *ngIf="uploadFileService.newFile"
+          *ngIf="uploadImageService.newFile"
           (click)="uploadAvatar()"
         >
           <i class="fa fa-save"></i>Guardar avatar

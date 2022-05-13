@@ -9,7 +9,7 @@ import {CompanyModule} from "./company/company.module";
 import {UserModule} from "./user/user.module";
 import {DashboardModule} from "./dashboard/dashboard.module";
 import {BreadcrumbComponent} from "./shared/component/breadcrumb/breadcrumb.component";
-import {UploadFileComponent} from "./shared/component/upload-file/upload-file.component";
+import {UploadImageComponent} from "./shared/component/upload-image/upload-image.component";
 
 
 @NgModule({
@@ -18,7 +18,7 @@ import {UploadFileComponent} from "./shared/component/upload-file/upload-file.co
     HeaderComponent,
     SidebarComponent,
     BreadcrumbComponent,
-    UploadFileComponent
+    UploadImageComponent
   ],
   exports: [
     AdminComponent

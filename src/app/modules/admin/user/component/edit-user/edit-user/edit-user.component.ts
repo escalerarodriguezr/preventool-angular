@@ -9,8 +9,8 @@ import Swal from "sweetalert2";
 import {FormBuilder, FormControlStatus, FormGroup, Validators} from "@angular/forms";
 import {HttpBaseService} from "../../../../shared/service/http-base/http-base.service";
 import {UpdateUserService} from "../../../service/update-user/update-user.service";
-import {UploadFileService} from "../../../../shared/service/upload-file/upload-file.service";
 import {UploadUserAvatarService} from "../../../service/upload-user-avatar/upload-user-avatar.service";
+import {UploadImageService} from "../../../../shared/service/upload-image/upload-image.service";
 
 @Component({
   selector: 'app-edit-user',
@@ -34,7 +34,7 @@ export class EditUserComponent implements OnInit {
     private fb:FormBuilder,
     private httpBaseService:HttpBaseService,
     private updateUserService:UpdateUserService,
-    public uploadFileService:UploadFileService,
+    public uploadImageService:UploadImageService,
     private uploadUserAvatarService:UploadUserAvatarService
   ) {
 
@@ -158,12 +158,12 @@ export class EditUserComponent implements OnInit {
   }
 
   public showChangeAvatarModal():void{
-    this.uploadFileService.showModal();
+    this.uploadImageService.showModal();
   }
 
   public uploadAvatar():void
   {
-    this.uploadUserAvatarService.invoke(this.user?.userUuid!, this.uploadFileService.newFileFile!).subscribe({
+    this.uploadUserAvatarService.invoke(this.user?.userUuid!, this.uploadImageService.newFileFile!).subscribe({
       next:response=>{
         Swal.fire(
           'Avatar modificado',

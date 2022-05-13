@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class UploadFileService {
+export class UploadImageService {
 
   private _hideModal:boolean = true;
   private _newFile:boolean = false;
