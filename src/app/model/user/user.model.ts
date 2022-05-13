@@ -1,3 +1,5 @@
+import {environment} from "../../../environments/environment";
+
 export class User {
   constructor(
     private _userId:number,
@@ -6,6 +8,7 @@ export class User {
     private _role: string,
     private _name: string,
     private _lastName: string,
+    private _avatar: string|null
   )
   {
   }
@@ -34,6 +37,10 @@ export class User {
     return this._lastName;
   }
 
+  get avatar(): string | null {
+    return this._avatar;
+  }
+
   getRoleName(): string{
     if(this._role == 'ROLE_ROOT'){
       return "Root";
@@ -41,6 +48,15 @@ export class User {
       return "Admin";
     }else{
       return 'User';
+    }
+  }
+
+  public getAvatarResource():string
+  {
+    if( this._avatar ){
+      return environment.digital_ocean_storage + this._avatar
+    }else{
+      return './assets/images/users/user-icon.png'
     }
   }
 }
