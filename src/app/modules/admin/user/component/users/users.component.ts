@@ -5,6 +5,7 @@ import {SearchUserInterface, UserInterface} from "../../service/search-user/sear
 import {HttpErrorResponse, HttpParams} from "@angular/common/http";
 import {HttpBaseService} from "../../../shared/service/http-base/http-base.service";
 import Swal from "sweetalert2";
+import {SessionService} from "../../../shared/service/session/session.service";
 
 @Component({
   selector: 'app-users',
@@ -28,13 +29,13 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private httBaseService:HttpBaseService,
-    private searchUserService:SearchUserService
+    private searchUserService:SearchUserService,
+    private sessionService:SessionService
   ) { }
 
   ngOnInit(): void {
     this.resetQueryParams();
     this.getUsers();
-
   }
 
   private resetQueryParams():void
@@ -120,6 +121,14 @@ export class UsersComponent implements OnInit {
       return true
     }
     return false;
+  }
+
+  public authUserCanEditUser(user:User):boolean
+  {
+    if( user.role == 'ROLE_ROOT' && (user.userUuid != this.sessionService.authUser?.userUuid) ){
+      return false;
+    }
+    return this.sessionService.authUser?.role == 'ROLE_ROOT'
   }
 
   public changePage(selectedPage:number):void
