@@ -128,6 +128,10 @@ export class UsersComponent implements OnInit {
     if( user.role == 'ROLE_ROOT' && (user.userUuid != this.sessionService.authUser?.userUuid) ){
       return false;
     }
+
+    if( user.userUuid == this.sessionService.authUser?.userUuid ){
+      return true;
+    }
     return this.sessionService.authUser?.role == 'ROLE_ROOT'
   }
 
