@@ -67,7 +67,8 @@ export class EditUserComponent implements OnInit {
               getUserByUuidResponse.name,
               getUserByUuidResponse.lastName,
               getUserByUuidResponse.avatar,
-              getUserByUuidResponse.isActive
+              getUserByUuidResponse.isActive,
+              getUserByUuidResponse.createdOn
             );
 
             this.setUserInitValues();

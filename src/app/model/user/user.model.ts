@@ -1,6 +1,10 @@
 import {environment} from "../../../environments/environment";
 
+
 export class User {
+
+  private _createdOnDate:Date;
+
   constructor(
     private _userId:number,
     private _userUuid:string,
@@ -9,9 +13,11 @@ export class User {
     private _name: string,
     private _lastName: string,
     private _avatar: string|null,
-    private _isActive:boolean
+    private _isActive:boolean,
+    private _createdOn:string
   )
   {
+    this._createdOnDate = new Date(this._createdOn);
   }
 
   get userId(): number {
@@ -44,6 +50,14 @@ export class User {
 
   get isActive(): boolean {
     return this._isActive;
+  }
+
+  get createdOnDate(): Date {
+    return this._createdOnDate;
+  }
+
+  get createdOn(): string {
+    return this._createdOn;
   }
 
   getRoleName(): string{

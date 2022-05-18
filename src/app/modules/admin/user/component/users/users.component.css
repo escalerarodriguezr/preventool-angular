@@ -2,6 +2,10 @@
   width: 100px;
   word-wrap: break-word;
 }
+.table-col-200{
+  width: 200px;
+  word-wrap: break-word;
+}
 .table-col-400{
   width: 400px;
   word-wrap: break-word;

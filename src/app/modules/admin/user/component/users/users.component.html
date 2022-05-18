@@ -38,6 +38,7 @@
                 <span class="cursor-pointer" (click)="orderByName()">Nombre</span>
               </th>
               <th> <span class="cursor-pointer" (click)="orderByRole()">Rol</span></th>
+              <th> <span class="cursor-pointer" (click)="orderByCreatedOn()">Fecha de creación</span></th>
               <th>
                 <span>Activo</span>
               </th>
@@ -49,6 +50,7 @@
                 <td>{{userModel.email}}</td>
                 <td class="table-col-400">{{userModel.name}} {{userModel.lastName}}</td>
                 <td class="table-col-100">{{userModel.getRoleName()}}</td>
+                <td class="table-col-200">{{userModel.createdOnDate.toLocaleString()}}</td>
                 <td class="table-col-100">
                   <div class="switch">
                     <label>

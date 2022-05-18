@@ -22,6 +22,7 @@ export class UsersComponent implements OnInit {
   private orderByEmailDirection:string = 'DESC';
   private orderByNameDirection:string = 'DESC';
   private orderByRoleDirection:string = 'DESC';
+  private orderByCreatedOnDirection:string = 'DESC';
 
   private queryParams:HttpParams = new HttpParams();
 
@@ -91,7 +92,8 @@ export class UsersComponent implements OnInit {
         user.name,
         user.lastName,
         null,
-        user.isActive
+        user.isActive,
+        user.createdOn
       )
       this.users.push(userModel);
     })
@@ -166,6 +168,15 @@ export class UsersComponent implements OnInit {
     this.orderByRoleDirection = (this.orderByRoleDirection == 'DESC') ? 'ASC' : 'DESC';
     this.queryParams = this.queryParams.set('orderBy','role');
     this.queryParams = this.queryParams.set('orderDirection',this.orderByRoleDirection);
+    this.getUsers();
+  }
+
+  public orderByCreatedOn():void
+  {
+    this.queryParams = this.queryParams.set('currentPage',1);
+    this.orderByCreatedOnDirection = (this.orderByCreatedOnDirection == 'DESC') ? 'ASC' : 'DESC';
+    this.queryParams = this.queryParams.set('orderBy','createdOn');
+    this.queryParams = this.queryParams.set('orderDirection',this.orderByCreatedOnDirection);
     this.getUsers();
   }
 
