@@ -179,7 +179,7 @@ const customInitDateTimePicker = () => {
       todayHighlight: true
     });
     jQuery('#date-range').datepicker({
-      toggleActive: true
+      toggleActive: true,
     });
     jQuery('#datepicker-inline').datepicker({
       todayHighlight: true
@@ -188,7 +188,7 @@ const customInitDateTimePicker = () => {
     $('.input-daterange-datepicker').daterangepicker({
       buttonClasses: ['btn', 'btn-sm'],
       applyClass: 'btn-danger',
-      cancelClass: 'btn-inverse'
+      cancelClass: 'btn-inverse',
     });
     $('.input-daterange-timepicker').daterangepicker({
       timePicker: true,
@@ -214,8 +214,18 @@ const customInitDateTimePicker = () => {
 
     $('#frompicker').on('change', function(e) {
       const fromPicker = document.getElementById('frompickerModel');
-      fromPicker.value = new Date(e.target.value).toISOString();
+      let fd = new Date(e.target.value);
+      fd.setDate(fd.getDate()-1);
+      fromPicker.value = fd.toISOString();
       fromPicker.dispatchEvent(new Event('input'));
+    });
+
+    $('#topicker').on('change', function(e) {
+      const toPicker = document.getElementById('topickerModel');
+      let fd = new Date(e.target.value);
+      fd.setDate(fd.getDate()+1);
+      toPicker.value = fd.toISOString();
+      toPicker.dispatchEvent(new Event('input'));
     });
   });
 }

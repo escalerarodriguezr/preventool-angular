@@ -14,7 +14,7 @@
 
           <div class="col-sm-12 col-xs-12 col-md-3">
             <div class="form-group">
-              <label for="filterByIsActive">Actido/Desactivado</label>
+              <label for="filterByIsActive">Activado/Desactivado</label>
               <select class="custom-select col-12" id="filterByIsActive"
                       name="filterByIsActive" [(ngModel)]="filterByIsActive"
               >
@@ -31,7 +31,8 @@
                 <input id="frompicker" type="text" class="form-control"/>
                 <input hidden id="frompickerModel" type="text" class="form-control" name="filterByCreatedOnFrom" [(ngModel)]="filterByCreatedOnFrom" />
                 <span class="input-group-addon bg-info b-0 text-white">-</span>
-                <input type="text" class="form-control" name="filterByCreatedOnTo" disabled />
+                <input  id="topicker" type="text" class="form-control"/>
+                <input hidden id="topickerModel" type="text" class="form-control" name="filterByCreatedOnTo" [(ngModel)]="filterByCreatedOnTo" />
               </div>
           </div>
 

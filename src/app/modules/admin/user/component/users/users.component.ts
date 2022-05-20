@@ -33,6 +33,7 @@ export class UsersComponent implements OnInit,AfterViewInit {
   public filterByEmail:string|null = null;
   public filterByIsActive:boolean|string = 'all';
   public filterByCreatedOnFrom:string|null = null;
+  public filterByCreatedOnTo:string|null = null;
 
   constructor(
     private httBaseService:HttpBaseService,
@@ -73,10 +74,12 @@ export class UsersComponent implements OnInit,AfterViewInit {
     this.filterByEmail = null;
     this.filterByIsActive = 'all';
     this.filterByCreatedOnFrom = null;
+    this.filterByCreatedOnTo = null;
   }
 
   private getUsers():void
   {
+    console.log(this.queryParams);
     this.httBaseService.screenLock();
     this.searchUserService.invoke(this.queryParams).subscribe({
       next:(response:SearchUserInterface)=>{
@@ -206,7 +209,13 @@ export class UsersComponent implements OnInit,AfterViewInit {
     if( this.filterByCreatedOnFrom !== null ){
       this.queryParams = this.queryParams.append('filterByCreatedOnFrom',this.filterByCreatedOnFrom);
     }
+
+    if( this.filterByCreatedOnTo !== null ){
+      this.queryParams = this.queryParams.append('filterByCreatedOnTo',this.filterByCreatedOnTo);
+    }
+
     this.getUsers();
+
   }
 
 }
