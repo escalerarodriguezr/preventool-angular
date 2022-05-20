@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {SearchUserService} from "../../service/search-user/search-user.service";
 import {User} from "../../../../../model/user/user.model";
 import {SearchUserInterface, UserInterface} from "../../service/search-user/search-user.interface";
@@ -7,12 +7,16 @@ import {HttpBaseService} from "../../../shared/service/http-base/http-base.servi
 import Swal from "sweetalert2";
 import {SessionService} from "../../../shared/service/session/session.service";
 
+//declare global function
+// @ts-ignore
+declare function customInitDateTimePicker();
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit,AfterViewInit {
 
   public users:User[] = [];
   public total:number = 0;
@@ -38,6 +42,11 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.resetQueryParams();
     this.getUsers();
+  }
+
+  ngAfterViewInit():void
+  {
+    customInitDateTimePicker();
   }
 
   private resetQueryParams():void
