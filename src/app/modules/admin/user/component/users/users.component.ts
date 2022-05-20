@@ -30,8 +30,9 @@ export class UsersComponent implements OnInit,AfterViewInit {
 
   private queryParams:HttpParams = new HttpParams();
 
-  public filterByEmail:string|null = null
-  public filterByIsActive:boolean|string = 'all'
+  public filterByEmail:string|null = null;
+  public filterByIsActive:boolean|string = 'all';
+  public filterByCreatedOnFrom:string|null = null;
 
   constructor(
     private httBaseService:HttpBaseService,
@@ -71,6 +72,7 @@ export class UsersComponent implements OnInit,AfterViewInit {
   {
     this.filterByEmail = null;
     this.filterByIsActive = 'all';
+    this.filterByCreatedOnFrom = null;
   }
 
   private getUsers():void
@@ -201,6 +203,9 @@ export class UsersComponent implements OnInit,AfterViewInit {
       this.queryParams = this.queryParams.append('filterByIsActive',this.filterByIsActive);
     }
 
+    if( this.filterByCreatedOnFrom !== null ){
+      this.queryParams = this.queryParams.append('filterByCreatedOnFrom',this.filterByCreatedOnFrom);
+    }
     this.getUsers();
   }
 

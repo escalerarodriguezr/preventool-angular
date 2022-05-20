@@ -211,6 +211,12 @@ const customInitDateTimePicker = () => {
         days: 6
       }
     });
+
+    $('#frompicker').on('change', function(e) {
+      const fromPicker = document.getElementById('frompickerModel');
+      fromPicker.value = new Date(e.target.value).toISOString();
+      fromPicker.dispatchEvent(new Event('input'));
+    });
   });
 }
 
