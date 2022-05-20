@@ -169,64 +169,29 @@ const customInitFunctions = () => {
 
 customInitFunctions();
 
-const customInitDateTimePicker = () => {
+const customInitDatePicker = () => {
   $(function() {
     "use strict";
-    // Date Picker
-    jQuery('.mydatepicker, #datepicker').datepicker();
-    jQuery('#datepicker-autoclose').datepicker({
-      autoclose: true,
-      todayHighlight: true
-    });
-    jQuery('#date-range').datepicker({
-      toggleActive: true,
-    });
-    jQuery('#datepicker-inline').datepicker({
-      todayHighlight: true
-    });
-    // Daterange picker
-    $('.input-daterange-datepicker').daterangepicker({
-      buttonClasses: ['btn', 'btn-sm'],
-      applyClass: 'btn-danger',
-      cancelClass: 'btn-inverse',
-    });
-    $('.input-daterange-timepicker').daterangepicker({
-      timePicker: true,
-      format: 'MM/DD/YYYY h:mm A',
-      timePickerIncrement: 30,
-      timePicker12Hour: true,
-      timePickerSeconds: false,
-      buttonClasses: ['btn', 'btn-sm'],
-      applyClass: 'btn-danger',
-      cancelClass: 'btn-inverse'
-    });
-    $('.input-limit-datepicker').daterangepicker({
-      format: 'MM/DD/YYYY',
-      minDate: '06/01/2015',
-      maxDate: '06/30/2015',
-      buttonClasses: ['btn', 'btn-sm'],
-      applyClass: 'btn-danger',
-      cancelClass: 'btn-inverse',
-      dateLimit: {
-        days: 6
-      }
+    // DatePicker
+    $.fn.datepicker.dates['es'] = {
+      days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+      daysShort: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+      daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+      months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+      monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+      today: "Hoy",
+      clear: "Borrar",
+      format: "dd/mm/yyyy",
+      titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
+      weekStart: 1
+    };
+    $('.datepicker').datepicker({
+      language: 'es',
+      autoclose: true
+    }).on('changeDate', function (event) {
+      event.target.dispatchEvent(new Event('input'))
     });
 
-    $('#frompicker').on('change', function(e) {
-      const fromPicker = document.getElementById('frompickerModel');
-      let fd = new Date(e.target.value);
-      fd.setDate(fd.getDate()-1);
-      fromPicker.value = fd.toISOString();
-      fromPicker.dispatchEvent(new Event('input'));
-    });
-
-    $('#topicker').on('change', function(e) {
-      const toPicker = document.getElementById('topickerModel');
-      let fd = new Date(e.target.value);
-      fd.setDate(fd.getDate()+1);
-      toPicker.value = fd.toISOString();
-      toPicker.dispatchEvent(new Event('input'));
-    });
   });
 }
 

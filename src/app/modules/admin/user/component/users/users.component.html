@@ -26,13 +26,11 @@
           </div>
 
           <div class="col-sm-12 col-xs-12 col-md-3">
-            <label>Rango fecha de creación</label>
-              <div class="input-daterange input-group" id="date-range">
-                <input id="frompicker" type="text" class="form-control"/>
-                <input hidden id="frompickerModel" type="text" class="form-control" name="filterByCreatedOnFrom" [(ngModel)]="filterByCreatedOnFrom" />
+            <label>Fecha de creación</label>
+              <div class="input-group">
+                <input type="text" class="form-control datepicker" [(ngModel)]="filterByCreatedOnFrom"/>
                 <span class="input-group-addon bg-info b-0 text-white">-</span>
-                <input  id="topicker" type="text" class="form-control"/>
-                <input hidden id="topickerModel" type="text" class="form-control" name="filterByCreatedOnTo" [(ngModel)]="filterByCreatedOnTo" />
+                <input type="text" class="form-control datepicker" [(ngModel)]="filterByCreatedOnTo"/>
               </div>
           </div>
 

@@ -9,7 +9,7 @@ import {SessionService} from "../../../shared/service/session/session.service";
 
 //declare global function
 // @ts-ignore
-declare function customInitDateTimePicker();
+declare function customInitDatePicker();
 
 @Component({
   selector: 'app-users',
@@ -48,7 +48,7 @@ export class UsersComponent implements OnInit,AfterViewInit {
 
   ngAfterViewInit():void
   {
-    customInitDateTimePicker();
+    customInitDatePicker();
   }
 
   private resetQueryParams():void
@@ -56,17 +56,12 @@ export class UsersComponent implements OnInit,AfterViewInit {
     this.queryParams = new HttpParams();
     this.queryParams = this.queryParams.append('pageSize',10);
     this.queryParams = this.queryParams.append('currentPage',1);
-
-    // this.queryParams = this.queryParams.append('orderBy','role');
-    // this.queryParams = this.queryParams.append('orderDirection','DESC')
   }
 
   private resetOrderParams():void
   {
-
     this.queryParams = this.queryParams.set('currentPage',1);
     this.queryParams = this.queryParams.delete('orderBy')
-
   }
 
   private resetFilters():void
@@ -79,7 +74,6 @@ export class UsersComponent implements OnInit,AfterViewInit {
 
   private getUsers():void
   {
-    console.log(this.queryParams);
     this.httBaseService.screenLock();
     this.searchUserService.invoke(this.queryParams).subscribe({
       next:(response:SearchUserInterface)=>{
@@ -165,7 +159,6 @@ export class UsersComponent implements OnInit,AfterViewInit {
     this.orderByEmailDirection = (this.orderByEmailDirection == 'DESC') ? 'ASC' : 'DESC';
     this.queryParams = this.queryParams.set('orderBy','email');
     this.queryParams = this.queryParams.set('orderDirection',this.orderByEmailDirection);
-
     this.getUsers();
   }
 
@@ -196,6 +189,15 @@ export class UsersComponent implements OnInit,AfterViewInit {
     this.getUsers();
   }
 
+  private static transformDatePicker(datePicker:string, separator:string = '/'):Date|null
+  {
+    const date = datePicker.split(separator);
+    if( date.length != 3 ){
+      return null;
+    }
+    return new Date(date[1] +separator + date[0] + separator +date[2]);
+  }
+
   public applyFilters():void
   {
     this.resetQueryParams();
@@ -207,15 +209,22 @@ export class UsersComponent implements OnInit,AfterViewInit {
     }
 
     if( this.filterByCreatedOnFrom !== null ){
-      this.queryParams = this.queryParams.append('filterByCreatedOnFrom',this.filterByCreatedOnFrom);
+      let fromCreatedOn = UsersComponent.transformDatePicker(this.filterByCreatedOnFrom);
+      if(fromCreatedOn != null){
+        fromCreatedOn.setDate(fromCreatedOn.getDate()-1);
+        this.queryParams = this.queryParams.append('filterByCreatedOnFrom',fromCreatedOn.toISOString());
+      }
     }
 
     if( this.filterByCreatedOnTo !== null ){
-      this.queryParams = this.queryParams.append('filterByCreatedOnTo',this.filterByCreatedOnTo);
+      let toCreatedOn = UsersComponent.transformDatePicker(this.filterByCreatedOnTo);
+      if( toCreatedOn != null ){
+        toCreatedOn.setDate(toCreatedOn.getDate()+1);
+        this.queryParams = this.queryParams.append('filterByCreatedOnTo',toCreatedOn.toISOString());
+      }
     }
 
     this.getUsers();
-
   }
 
 }
