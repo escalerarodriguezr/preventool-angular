@@ -22,19 +22,19 @@ export class SidebarService {
         }
       ]
     },
-    // company:{
-    //   module:"Modulo Empresa",
-    //   items:[
-    //     {
-    //       title: 'Compañia',
-    //       icon: 'mdi mdi-gauge',
-    //       submenu: [
-    //         {title: 'Datos generales', url: '/admin/company/update'},
-    //         {title: 'Progress', url: '/admin/company/progress'},
-    //       ]
-    //     }
-    //   ]
-    // },
+    company:{
+      module:"Company",
+      items:[
+        {
+          title: 'Empresa',
+          icon: 'mdi mdi-city',
+          submenu: [
+            {title: 'Datos generales', url: '/admin/company/edit'},
+
+          ]
+        }
+      ]
+    },
   }
 
 

@@ -65,18 +65,20 @@ export class BreadcrumbComponent implements OnInit {
       }
     ],
 
-    // //Company
-    // '/admin/company/update': [
-    //   {
-    //     pageTitle: 'Datos compañia',
-    //     title: 'Dashboard',
-    //     url: '/admin/dashboard'
-    //   },
-    //   {
-    //     title: 'Datos generales Compañia',
-    //     url: '/admin/company/update'
-    //   }
-    // ],
+    //Company
+    '/admin/company/edit': [
+      {
+        pageTitle: 'Datos empresa',
+        title: 'Dashboard',
+        url: '/admin/dashboard',
+        navigate: true
+      },
+      {
+        title: 'Datos empresa',
+        url: '/admin/company/edit',
+        navigate: false
+      }
+    ],
     // 'admin/company/progress': [
     //   {
     //     pageTitle: 'Progreso',

@@ -8,12 +8,12 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'update',
+        path: 'edit',
         component: UpdateCompanyComponent
       },
       {
         path: '**',
-        redirectTo: 'update'
+        redirectTo: 'edit'
       }
     ]
   }
