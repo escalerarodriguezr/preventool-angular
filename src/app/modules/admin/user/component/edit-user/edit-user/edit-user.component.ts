@@ -87,7 +87,7 @@ export class EditUserComponent implements OnInit {
 
     this.updateUserForm.get('name')?.statusChanges.subscribe({
       next:(status:FormControlStatus)=>{
-        this.nameHasError = status == 'INVALID';
+
       }
     });
     this.updateUserForm.get('lastName')?.statusChanges.subscribe({
