@@ -3,6 +3,7 @@ import {GetCompanyService} from "../../service/get-company/get-company.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {GetCompanyInterface} from "../../service/get-company/get-company-interface";
 import {HttpBaseService} from "../../../shared/service/http-base/http-base.service";
+import {Company} from "../../../../../model/company/company.model";
 
 @Component({
   selector: 'app-update-company',
@@ -12,7 +13,7 @@ import {HttpBaseService} from "../../../shared/service/http-base/http-base.servi
 export class UpdateCompanyComponent implements OnInit {
 
 
-  private company:any
+  private company:Company|undefined
 
   constructor(
     private getCompanyService:GetCompanyService,
@@ -26,8 +27,18 @@ export class UpdateCompanyComponent implements OnInit {
     this.httpBaseService.screenLock()
     this.getCompanyService.invoke().subscribe({
       next: (response:GetCompanyInterface)=>{
+
+
+        this.company = new Company(
+          response.id,
+          response.uuid,
+          response.name,
+          response.legalDocument,
+          response.address
+        );
+
+        console.log(this.company);
         this.httpBaseService.screenUnLock();
-        console.log(response.name);
       },
       error: (error:HttpErrorResponse)=>{
         console.log(error);
