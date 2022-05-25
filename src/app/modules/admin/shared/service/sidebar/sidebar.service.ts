@@ -55,6 +55,7 @@ export class SidebarService {
     if( this.sessionService.authUser?.role === 'ROLE_ADMIN' ){
       // @ts-ignore
       transformedMenu.users.items[0].submenu.splice(1,1)
+      transformedMenu.company.items.splice(0,1)
     }
 
     return transformedMenu;
