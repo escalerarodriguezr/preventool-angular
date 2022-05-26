@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from "../../auth/login/login.component";
 import {UpdateCompanyComponent} from "./component/update-company/update-company.component";
+import {AuthGuard} from "../guard/auth.guard";
+import {RootGuard} from "../guard/root.guard";
 
 const routes: Routes = [
   {
@@ -9,6 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: 'edit',
+        canActivate: [ RootGuard ],
         component: UpdateCompanyComponent
       },
       {
