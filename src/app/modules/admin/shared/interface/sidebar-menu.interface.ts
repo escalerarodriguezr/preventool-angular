@@ -17,4 +17,5 @@ export interface MenuModule{
 export interface SideBarMenu{
   users: MenuModule
   company: MenuModule,
+  organization:MenuModule
 }

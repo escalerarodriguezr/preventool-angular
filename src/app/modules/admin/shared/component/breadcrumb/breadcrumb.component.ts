@@ -79,6 +79,22 @@ export class BreadcrumbComponent implements OnInit {
         navigate: false
       }
     ],
+
+
+    '/admin/organization/create': [
+      {
+        pageTitle: 'Crear organización',
+        title: 'Dashboard',
+        url: '/admin/dashboard',
+        navigate: true
+      },
+      {
+        title: 'Crear organización',
+        url: '/admin/organization/create',
+        navigate: true
+      }
+    ],
+
     // 'admin/company/progress': [
     //   {
     //     pageTitle: 'Progreso',

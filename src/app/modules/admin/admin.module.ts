@@ -10,6 +10,7 @@ import {UserModule} from "./user/user.module";
 import {DashboardModule} from "./dashboard/dashboard.module";
 import {BreadcrumbComponent} from "./shared/component/breadcrumb/breadcrumb.component";
 import {UploadImageComponent} from "./shared/component/upload-image/upload-image.component";
+import {OrganizationModule} from "./organization/organization.module";
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {UploadImageComponent} from "./shared/component/upload-image/upload-image
     AdminRoutingModule,
     DashboardModule,
     CompanyModule,
-    UserModule
+    UserModule,
+    OrganizationModule
   ]
 })
 export class AdminModule { }

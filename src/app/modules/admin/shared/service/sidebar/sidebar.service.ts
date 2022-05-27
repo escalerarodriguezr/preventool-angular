@@ -35,6 +35,19 @@ export class SidebarService {
         }
       ]
     },
+    organization:{
+      module:"Organization",
+      items:[
+        {
+          title: 'Organizaciones',
+          icon: 'mdi mdi-city',
+          submenu: [
+            {title: 'Crear', url: '/admin/organization/create'},
+
+          ]
+        }
+      ]
+    },
   }
 
 
