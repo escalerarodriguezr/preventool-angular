@@ -39,6 +39,23 @@
           </li>
         </ng-container>
 
+        <ng-container *ngIf="menu.organization">
+          <li *ngFor="let item of menu.organization.items ">
+            <a class="has-arrow waves-effect waves-dark"
+               href="#" aria-expanded="false">
+              <i [class]="item.icon"></i><span class="hide-menu">{{item.title}}</span>
+            </a>
+            <ul aria-expanded="false" class="collapse">
+
+              <li *ngFor="let submenu of item.submenu">
+                <a [routerLink]="submenu.url" routerLinkActive="active">
+                  {{submenu.title}}
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ng-container>
+
       </ul>
     </nav>
     <!-- End Sidebar navigation -->
