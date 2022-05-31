@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {CreateOrganizationComponent} from "./component/create-organization/create-organization.component";
+import {SearchOrganizationComponent} from "./component/search-organization/search-organization.component";
 
 const routes: Routes = [
   {
@@ -9,6 +10,10 @@ const routes: Routes = [
       {
         path: 'create',
         component: CreateOrganizationComponent
+      },
+      {
+        path: 'organizations',
+        component: SearchOrganizationComponent
       },
       {
         path: '*',

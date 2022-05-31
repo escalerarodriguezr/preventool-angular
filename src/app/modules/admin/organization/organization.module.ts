@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { OrganizationRoutingModule } from './organization-routing.module';
 import { CreateOrganizationComponent } from './component/create-organization/create-organization.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { SearchOrganizationComponent } from './component/search-organization/search-organization.component';
 
 
 @NgModule({
   declarations: [
-    CreateOrganizationComponent
+    CreateOrganizationComponent,
+    SearchOrganizationComponent
   ],
   imports: [
     CommonModule,

@@ -42,7 +42,8 @@ export class SidebarService {
           title: 'Organizaciones',
           icon: 'mdi mdi-city',
           submenu: [
-            {title: 'Crear', url: '/admin/organization/create'},
+            {title: 'Listado de organizaciones', url: '/admin/organization/organizations'},
+            {title: 'Crear', url: '/admin/organization/create'}
 
           ]
         }
