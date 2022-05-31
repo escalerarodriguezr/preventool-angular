@@ -23,6 +23,8 @@ export class SearchOrganizationComponent implements OnInit {
 
   private queryParams:HttpParams = new HttpParams();
 
+  private orderByNameDirection:string = 'DESC';
+
   constructor(
     private httpBaseService:HttpBaseService,
     private searchOrganizationService:SearchOrganizationService
@@ -35,11 +37,43 @@ export class SearchOrganizationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public getPagesCollection():number[]
+  {
+    let pagesCollection:any[] = [];
+    for(let j=-2;j<=2;j++){
+      let i = this.currentPage+j;
+      if(i>=1 && i<=this.pages){
+        pagesCollection.push(i);
+      }
+    }
+    return pagesCollection;
+  }
+
+  public showLastPageButton():boolean{
+    return this.currentPage < this.pages;
+  }
+
+  public showPagination():boolean{
+    return this.pages > 1;
+  }
+
+  public changePage(selectedPage:number):void
+  {
+    this.queryParams = this.queryParams.append('currentPage',selectedPage);
+    this.getOrganizations();
+  }
+
   private resetQueryParams():void
   {
     this.queryParams = new HttpParams();
     this.queryParams = this.queryParams.append('pageSize',10);
     this.queryParams = this.queryParams.append('currentPage',1);
+  }
+
+  private resetOrderParams():void
+  {
+    this.queryParams = this.queryParams.set('currentPage',1);
+    this.queryParams = this.queryParams.delete('orderBy')
   }
 
   private getOrganizations():void
@@ -77,6 +111,15 @@ export class SearchOrganizationComponent implements OnInit {
       );
       this.organizations.push(organizationModel);
     })
+  }
+
+  public orderByName():void
+  {
+    this.queryParams = this.queryParams.set('currentPage',1);
+    this.orderByNameDirection = (this.orderByNameDirection == 'DESC') ? 'ASC' : 'DESC';
+    this.queryParams = this.queryParams.set('orderBy','name');
+    this.queryParams = this.queryParams.set('orderDirection',this.orderByNameDirection);
+    this.getOrganizations();
   }
 
 
