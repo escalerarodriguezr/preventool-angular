@@ -1,0 +1,126 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12 col-md-3">
+            <div class="form-group">
+              <label for="filterByEmail">Email</label>
+              <input type="text" class="form-control" id="filterByEmail"
+                     name="filterByEmail" [(ngModel)]="filterByEmail"
+              >
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-xs-12 col-md-3">
+            <div class="form-group">
+              <label for="filterByIsActive">Activado/Desactivado</label>
+              <select class="custom-select col-12" id="filterByIsActive"
+                      name="filterByIsActive" [(ngModel)]="filterByIsActive"
+              >
+                <option value="all">Todos</option>
+                <option value="true">Activado</option>
+                <option value="false">Desactivado</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-end">
+          <button type="button" class="btn waves-effect waves-light btn-block btn-info w-200"
+                  (click)="applyFilters()"
+          >Buscar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>
+                <span class="cursor-pointer" (click)="orderByName()">Nombre</span>
+              </th>
+              <th>
+                <span class="cursor-pointer" (click)="orderByEmail()">Email</span>
+
+              </th>
+              <th> <span>RUC</span></th>
+              <th> <span class="cursor-pointer" (click)="orderByCreatedOn()">Fecha de creación</span></th>
+              <th>
+                <span>Activo</span>
+              </th>
+              <th class="text-nowrap">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let organizationModel of organizations" class="animated fadeIn">
+              <td>{{organizationModel.name}}</td>
+              <td class="table-col-400">{{organizationModel.email}}</td>
+              <td class="table-col-100">{{organizationModel.legalDocument}}</td>
+              <td class="table-col-200">{{organizationModel.createdOnDate.toLocaleString()}}</td>
+              <td class="table-col-100">
+                <div class="switch">
+                  <label>
+                    <input type="checkbox"
+                           [checked]="organizationModel.isActive"
+                           [disabled]="true"
+                    ><span class="lever switch-col-light-green"></span>
+                  </label>
+                </div>
+              </td>
+              <td class="text-nowrap table-col-100">
+<!--                <a [routerLink]="['/admin/user/edit',userModel.userUuid]" data-toggle="tooltip" data-original-title="Editar Usuario"-->
+<!--                   *ngIf="authUserCanEditUser(userModel)"-->
+<!--                > <i class="fa fa-pencil text-inverse m-r-10"></i> </a>-->
+                <!--                  <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>-->
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-between mt-5 w-100">
+            <div><span>Total de usuarios: {{total}}</span> <span *ngIf="total"> - Mostrando página {{currentPage}} de {{pages}}</span></div>
+            <ul class="pagination"
+                *ngIf="showPagination()"
+            >
+              <li class="page-item animated fadeIn">
+                <a class="page-link cursor-pointer" aria-label="Previous"
+                   (click)="changePage(1)"
+                >
+                  <span aria-hidden="true">Primera</span>
+
+                </a>
+              </li>
+
+              <li *ngFor="let page of getPagesCollection()" class="page-item animated fadeIn"
+                  [class.active]="page == currentPage"
+              >
+                <a class="page-link cursor-pointer"
+                   (click)="changePage(page)"
+                >
+                  {{page}}</a>
+              </li>
+
+              <li class="page-item animated fadeIn"
+                  *ngIf="showLastPageButton()"
+              >
+                <a class="page-link cursor-pointer" aria-label="Next"
+                   (click)="changePage(pages)"
+                >
+                  <span aria-hidden="true">Última</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
