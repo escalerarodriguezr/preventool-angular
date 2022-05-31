@@ -24,6 +24,8 @@ export class SearchOrganizationComponent implements OnInit {
   private queryParams:HttpParams = new HttpParams();
 
   private orderByNameDirection:string = 'DESC';
+  private orderByEmailDirection:string = 'DESC';
+  private orderByCreatedOnDirection:string = 'DESC';
 
   constructor(
     private httpBaseService:HttpBaseService,
@@ -119,6 +121,24 @@ export class SearchOrganizationComponent implements OnInit {
     this.orderByNameDirection = (this.orderByNameDirection == 'DESC') ? 'ASC' : 'DESC';
     this.queryParams = this.queryParams.set('orderBy','name');
     this.queryParams = this.queryParams.set('orderDirection',this.orderByNameDirection);
+    this.getOrganizations();
+  }
+
+  public orderByEmail():void
+  {
+    this.queryParams = this.queryParams.set('currentPage',1);
+    this.orderByEmailDirection = (this.orderByEmailDirection == 'DESC') ? 'ASC' : 'DESC';
+    this.queryParams = this.queryParams.set('orderBy','email');
+    this.queryParams = this.queryParams.set('orderDirection',this.orderByEmailDirection);
+    this.getOrganizations();
+  }
+
+  public orderByCreatedOn():void
+  {
+    this.queryParams = this.queryParams.set('currentPage',1);
+    this.orderByCreatedOnDirection = (this.orderByCreatedOnDirection == 'DESC') ? 'ASC' : 'DESC';
+    this.queryParams = this.queryParams.set('orderBy','createdOn');
+    this.queryParams = this.queryParams.set('orderDirection',this.orderByCreatedOnDirection);
     this.getOrganizations();
   }
 
