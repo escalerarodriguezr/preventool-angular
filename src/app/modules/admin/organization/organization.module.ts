@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { OrganizationRoutingModule } from './organization-routing.module';
 import { CreateOrganizationComponent } from './component/create-organization/create-organization.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SearchOrganizationComponent } from './component/search-organization/search-organization.component';
 
 
@@ -12,10 +12,11 @@ import { SearchOrganizationComponent } from './component/search-organization/sea
     CreateOrganizationComponent,
     SearchOrganizationComponent
   ],
-  imports: [
-    CommonModule,
-    OrganizationRoutingModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        OrganizationRoutingModule,
+        ReactiveFormsModule,
+        FormsModule
+    ]
 })
 export class OrganizationModule { }

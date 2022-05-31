@@ -27,6 +27,9 @@ export class SearchOrganizationComponent implements OnInit {
   private orderByEmailDirection:string = 'DESC';
   private orderByCreatedOnDirection:string = 'DESC';
 
+  public filterByEmail:string|null = null;
+  public filterByIsActive:boolean|string = 'all';
+
   constructor(
     private httpBaseService:HttpBaseService,
     private searchOrganizationService:SearchOrganizationService
@@ -70,12 +73,6 @@ export class SearchOrganizationComponent implements OnInit {
     this.queryParams = new HttpParams();
     this.queryParams = this.queryParams.append('pageSize',10);
     this.queryParams = this.queryParams.append('currentPage',1);
-  }
-
-  private resetOrderParams():void
-  {
-    this.queryParams = this.queryParams.set('currentPage',1);
-    this.queryParams = this.queryParams.delete('orderBy')
   }
 
   private getOrganizations():void
@@ -143,4 +140,15 @@ export class SearchOrganizationComponent implements OnInit {
   }
 
 
+  public applyFilters():void
+  {
+    this.resetQueryParams();
+    if( this.filterByEmail !== null && this.filterByEmail.length > 0 ){
+      this.queryParams = this.queryParams.append('filterByEmail',this.filterByEmail.trim());
+    }
+    if( this.filterByIsActive !== 'all' ){
+      this.queryParams = this.queryParams.append('filterByIsActive',this.filterByIsActive);
+    }
+    this.getOrganizations();
+  }
 }
