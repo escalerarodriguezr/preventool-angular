@@ -94,7 +94,7 @@ export class BreadcrumbComponent implements OnInit {
         navigate: true
       }
     ],
-    
+
     '/admin/organization/create': [
       {
         pageTitle: 'Crear organización',
@@ -106,6 +106,19 @@ export class BreadcrumbComponent implements OnInit {
         title: 'Crear organización',
         url: '/admin/organization/create',
         navigate: true
+      }
+    ],
+    '/admin/organization/edit': [
+      {
+        pageTitle: 'Editar organizacion',
+        title: 'Listado de Organizaciones',
+        url: '/admin/organization/organizations',
+        navigate: true
+      },
+      {
+        title: 'Editar organizacion',
+        url: '#',
+        navigate:false
       }
     ],
 
@@ -149,6 +162,9 @@ export class BreadcrumbComponent implements OnInit {
   private tranformPath(path:string):string {
     if (path.includes('/admin/user/edit')) {
       return '/admin/user/edit';
+    }
+    if (path.includes('/admin/organization/edit')) {
+      return '/admin/organization/edit';
     }
     return path;
   }
