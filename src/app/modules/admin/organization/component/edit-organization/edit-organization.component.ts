@@ -9,6 +9,8 @@ import Swal from "sweetalert2";
 import {
   GetOrganizationByUuidInterface
 } from "../../service/get-organization-by-uuid/get-organization-by-uuid.interface";
+import {Organization} from "../../../../../model/organization/organization.model";
+import {FormBuilder, FormControlStatus, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-edit-organization',
@@ -17,11 +19,26 @@ import {
 })
 export class EditOrganizationComponent implements OnInit {
 
+  private organization:Organization|undefined
+  public updateOrganizationForm: FormGroup;
+
+  public nameHasError:boolean = false;
+  public emailRequiredError:boolean = false;
+  public emailEmailError:boolean = false;
+
   constructor(
     private activatedRoute:ActivatedRoute,
     private httpBaseService:HttpBaseService,
-    private service:GetOrganizationByUuidService
-  ) { }
+    private service:GetOrganizationByUuidService,
+    private fb:FormBuilder
+  ) {
+    this.updateOrganizationForm = this.fb.group({
+      name:[null,Validators.required],
+      email:[null,[Validators.required,Validators.email]],
+      legalDocument:[null],
+      address:[null]
+    })
+  }
 
   ngOnInit(): void {
     this.httpBaseService.screenLock()
@@ -32,6 +49,17 @@ export class EditOrganizationComponent implements OnInit {
       .subscribe({
         next:(getOrganizationByUuidResponse:GetOrganizationByUuidInterface) =>{
           console.log(getOrganizationByUuidResponse.address);
+          this.organization = new Organization(
+            getOrganizationByUuidResponse.id,
+            getOrganizationByUuidResponse.uuid,
+            getOrganizationByUuidResponse.name,
+            getOrganizationByUuidResponse.email,
+            getOrganizationByUuidResponse.isActive,
+            getOrganizationByUuidResponse.createdOn,
+            getOrganizationByUuidResponse.legalDocument,
+            getOrganizationByUuidResponse.address
+          );
+          this.setOrganizationInitValues();
           this.httpBaseService.screenUnLock();
         },
         error: (error:HttpErrorResponse) => {
@@ -43,6 +71,56 @@ export class EditOrganizationComponent implements OnInit {
           }
         }
       });
+
+    this.updateOrganizationForm.get('name')?.statusChanges.subscribe({
+      next: (status:FormControlStatus)=>{
+        this.nameHasError = status == 'INVALID';
+      }
+    });
+
+    this.updateOrganizationForm.get('email')?.statusChanges.subscribe({
+      next:(status:FormControlStatus)=>{
+        this.emailRequiredError =  !!this.updateOrganizationForm.get('email')?.hasError('required');
+        this.emailEmailError = !!this.updateOrganizationForm.get('email')?.hasError('email');
+      }
+    });
+  }
+
+  private setOrganizationInitValues():void
+  {
+    const initOrganization = {
+      name:this.organization?.name,
+      email:this.organization?.email,
+      legalDocument:this.organization?.legalDocument,
+      address:this.organization?.address
+    }
+    this.updateOrganizationForm.setValue(initOrganization);
+  }
+
+  get formValid():boolean
+  {
+    return this.updateOrganizationForm.valid;
+  }
+
+  get formDirty():boolean
+  {
+    return this.updateOrganizationForm.dirty
+  }
+
+  get emailInvalid():boolean
+  {
+    return this.emailRequiredError || this.emailEmailError;
+  }
+
+  get formCanSubmit():boolean
+  {
+    return (this.formValid && this.formDirty);
+  }
+
+  public submit():void
+  {
+    //waiting for backend updateOrganizationService
+    console.log(this.updateOrganizationForm.value);
   }
 
 }
